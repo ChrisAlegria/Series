@@ -1,0 +1,6 @@
+<section class="cover-section section1" [style.background-image]="portada ? 'url(' + portada + ')' : ''">
+    <div class="container textStyle">
+        <h1>{{ nombreSerie.toUpperCase() }}</h1>
+        <p *ngIf="detallesSerie && detallesSerie.length > 0">{{ detallesSerie[0].descripcion }}</p>
+    </div>
+</section>

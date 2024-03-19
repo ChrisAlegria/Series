@@ -1,0 +1,98 @@
+h1{
+    color: white;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+p{
+    font-size: 90%;
+    font-style: inherit;
+    font-weight: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(201, 201, 201);
+}
+
+section {
+    border-bottom: 8px solid #222;
+    padding: 2rem 5%;
+}
+
+img{
+    margin-left: 10px;
+    width: 500px;
+}
+
+p{
+    margin-bottom: 40px;
+}
+
+label{
+    margin-bottom: 10px;
+    font-size: medium;
+}
+
+.container {
+    text-align: center;
+    border-left: 40px;
+}
+
+.btn{
+    margin-top: 10px;
+    width: 500px; 
+    font-size: 90%;
+    font-style: inherit;
+    font-weight: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(201, 201, 201);
+}
+
+.select-dropdown {
+    text-align: center;
+  }
+  
+  /* Centrar la opción seleccionada */
+  .mat-select-value-text {
+    text-align: center;
+  }
+
+  .form-control {
+    width: 100%; /* Ajusta el ancho según sea necesario */
+    text-align: center; /* Centra el texto en el desplegable */
+    margin: 0 auto; /* Centra el desplegable horizontalmente */
+  }
+  
+  .form-control  option {
+    text-align: center; /* Centra el texto de las opciones */
+  }
+
+  .cover-section {
+    background-image: url('https://www.elpais.com.co/resizer/SZeLB3HSqgcdJL2UH-RgY84F8jY=/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/WZFAXAFLIBCQVHL4R2XYJKXGY4.jpg');
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+    background-size: cover; /* Ajusta la imagen para que cubra toda la sección */
+    width: 100%;
+    height: 450px; /* Ajusta la altura según sea necesario */
+    position: relative; /* Añade posición relativa para que el posicionamiento absoluto funcione */
+  }  
+
+  .cover-section::before {
+    content: ""; /* Añade el contenido necesario para los pseudo-elementos */
+    position: absolute; /* Posiciona el elemento de manera absoluta */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad */
+  }
+
+  .cover-section .container {
+    margin-top: 60px;
+    position: relative; /* Permite que el contenido esté posicionado correctamente */
+    z-index: 1; /* Asegura que el texto esté encima de la capa negra */
+    color: white; /* Color del texto */
+    text-align: center; /* Centra horizontalmente el texto */
+    padding-top: 50px; /* Espacio superior para centrar verticalmente el texto */
+  }

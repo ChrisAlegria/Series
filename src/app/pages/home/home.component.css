@@ -1,0 +1,93 @@
+h1{
+    color: white;
+    margin-bottom: 30px;
+    margin-top: 80px;
+}
+
+p{
+    font-size: 90%;
+    font-style: inherit;
+    font-weight: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(201, 201, 201);
+}
+
+section {
+    border-bottom: 8px solid #222;
+    padding: 2rem 5%;
+}
+
+img{
+    margin-left: 10px;
+    width: 500px;
+}
+
+.container {
+    text-align: center;
+    border-left: 40px;
+}
+
+.section1{
+    background-image: url('https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2023/06/sirve-modo-cine-televisor-deberias-usarlo-3071980.jpg?tf=3840x');
+}
+
+.section2{
+    background-image: url('https://www.elpais.com.co/resizer/SZeLB3HSqgcdJL2UH-RgY84F8jY=/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/WZFAXAFLIBCQVHL4R2XYJKXGY4.jpg');
+}
+
+.section3{
+    background-image: url('https://hips.hearstapps.com/hmg-prod/images/netflix-653238be1d8c8.jpg');
+}
+
+.section3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px); /* Aplica un desenfoque de 3px al fondo detrás del elemento */
+}
+
+.section4{
+    background-image: url('https://master.com.mx/cdn/shop/articles/blog_Mesa_de_trabajo_1_34311d44-c5c8-4105-9594-ba2394e83ecc_770x.jpg?v=1636045084');
+}
+
+.section4::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px); /* Aplica un desenfoque de 3px al fondo detrás del elemento */
+}
+
+.cover-section {
+    background-size: cover; /* Ajusta la imagen para que cubra toda la sección */
+    width: 100%;
+    height: 450px; /* Ajusta la altura según sea necesario */
+    position: relative; /* Añade posición relativa para que el posicionamiento absoluto funcione */
+  }  
+
+  .cover-section::before {
+    content: ""; /* Añade el contenido necesario para los pseudo-elementos */
+    position: absolute; /* Posiciona el elemento de manera absoluta */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad */
+  }
+  
+  .cover-section .container{
+    margin-top: 9px;
+    position: relative; /* Permite que el contenido esté posicionado correctamente */
+    z-index: 1; /* Asegura que el texto esté encima de la capa negra */
+    color: white; /* Color del texto */
+    text-align: center; /* Centra horizontalmente el texto */
+    padding-top: 50px; /* Espacio superior para centrar verticalmente el texto */
+  }
+

@@ -1,0 +1,64 @@
+<section class="cover-section section1">
+    <div class="container textStyle">
+        <h1>Agrega tus Series Favoritas a tu Lista</h1>
+        <p>En este apartado podras registrar las series que mas te gustan y adoras, donde podras colocarle toda la informacion
+        a estas mismas y quedar de esta manera registrada en la base de datos, donde posteriormente podras visualizar tus series
+        guardas e incluso poder modifcarlarlas o eliminarlas.
+        </p>
+    </div>
+  </section>
+
+  
+  <section>
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="textStyle">
+            <h1>Ingresa Aquí la Información de tu Serie</h1>
+            <p>En este apartado podrás agregar tus series favoritas y registrarlas en una base de datos, donde se almacenará el nombre de tu serie, su foto de portada, sus temporadas que le agregues y mucho más.</p>
+            <img src="https://resizer.iproimg.com/unsafe/1280x/filters:format(webp)/https://assets.iprofesional.com/assets/jpg/2020/07/499648.jpg" alt="Responsive image television" class="img-fluid" />
+        </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="container row col-12">
+            <br>
+            <div class="col-sm-12">
+                <p><br>
+                    <label class="iniLab">Nombre de la Serie</label>
+                    <input type="text" class="form-control" [(ngModel)]="registro.nombre"/>
+                </p>
+                <p>
+                    <label>Descripcion de la Serie</label>
+                    <input type="text" class="form-control" [(ngModel)]="registro.descripcion"/>
+                </p>
+                <p>
+                    <label>Genero de la Serie</label>
+                    <select class="form-control" [(ngModel)]="registro.genero">
+                        <option *ngFor="let genero of generos">{{ genero }}</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Año de Publicacion de la Serie</label>
+                    <input type="text" class="form-control" [(ngModel)]="registro.ano"/>
+                </p>
+                <p>
+                    <label>Url de la Portada de la Serie</label>
+                    <input type="text" class="form-control" [(ngModel)]="registro.portada"/>
+                </p>
+                <table>
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-success"
+                            (click)="this.insertarRegistro()">Insertar Serie a la BD</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+

@@ -1,0 +1,122 @@
+h1{
+    color: white;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+p{
+    font-size: 90%;
+    font-style: inherit;
+    font-weight: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(201, 201, 201);
+}
+
+section {
+    border-bottom: 8px solid #222;
+    padding: 2rem 5%;
+}
+
+img{
+    margin-left: 10px;
+    width: 500px;
+}
+
+p{
+    margin-bottom: 40px;
+}
+
+label{
+    margin-bottom: 10px;
+    font-size: medium;
+}
+
+.container {
+    text-align: center;
+    border-left: 40px;
+}
+
+.cover-section {
+    background-image: url('https://hips.hearstapps.com/hmg-prod/images/netflix-653238be1d8c8.jpg');
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+    background-size: cover; /* Ajusta la imagen para que cubra toda la sección */
+    width: 100%;
+    height: 450px; /* Ajusta la altura según sea necesario */
+    position: relative; /* Añade posición relativa para que el posicionamiento absoluto funcione */
+  }  
+
+  .cover-section::before {
+    content: ""; /* Añade el contenido necesario para los pseudo-elementos */
+    position: absolute; /* Posiciona el elemento de manera absoluta */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad */
+  }
+
+  .cover-section .container {
+    margin-top: 60px;
+    position: relative; /* Permite que el contenido esté posicionado correctamente */
+    z-index: 1; /* Asegura que el texto esté encima de la capa negra */
+    color: white; /* Color del texto */
+    text-align: center; /* Centra horizontalmente el texto */
+    padding-top: 50px; /* Espacio superior para centrar verticalmente el texto */
+  }
+
+  .serie-box {
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .serie-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .serie-box h3, .serie-box p {
+    margin: 0;
+    text-align: center;
+  }
+
+  .containerCard{
+    padding: 2rem 5%; /* Padding igual al de las section */
+  }
+
+  .card {
+    border: none;
+    background-color: transparent;
+    margin-bottom: 10px; /* Reducir el margen inferior */
+    margin-right: 10px; /* Reducir el margen derecho */
+    margin-left: 10px; /* Reducir el margen izquierdo */
+}
+
+.card-body {
+    padding: 0;
+}
+
+.card-img-top {
+  width: 200px; /* Ancho fijo para todas las imágenes */
+  height: 300px; /* Alto fijo para todas las imágenes */
+  border-radius: 5px; /* Aplicar un radio de borde a la imagen */
+  object-fit: cover; /* Ajustar el contenido de la imagen cubriendo el contenedor */
+}
+
+  .containerCard .card {
+    margin-bottom: 20px; /* Margen inferior entre los cuadros */
+    margin-top: 20px; /* Margen superior entre los cuadros */
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+    
+  /* Alinear las nuevas tarjetas a la izquierda */
+.containerCard .row {
+  justify-content: flex-start;
+}

@@ -1,0 +1,23 @@
+<section class="cover-section section1">
+    <div class="container textStyle">
+        <h1>Agrega tus Series Favoritas a tu Lista</h1>
+        <p>En este apartado podras registrar las series que mas te gustan y adoras, donde podras colocarle toda la informacion
+        a estas mismas y quedar de esta manera registrada en la base de datos, donde posteriormente podras visualizar tus series
+        guardas e incluso poder modifcarlarlas o eliminarlas.
+        </p>
+    </div>
+  </section>
+
+  <div class="containerCard">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let registro of registros">
+        <div class="card">
+          <a [routerLink]="['/detalles', registro.nombre]">
+            <div class="card-body">
+              <img [src]="registro.portada" class="card-img-top" alt="...">
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

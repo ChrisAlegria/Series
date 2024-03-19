@@ -1,0 +1,52 @@
+.menu-container {
+  display: flex;
+  align-items: center; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que el menú esté sobre otros elementos */
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
+  backdrop-filter: blur(5px); /* Efecto de desenfoque para mejorar la apariencia */
+}
+
+.logoContainer {
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.menu-content {
+  flex-grow: 1; 
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.custom-nav-tabs {
+  list-style: none;
+  justify-content: center;
+}
+
+.nav-tabs .nav-link {
+  margin-bottom: 7px;
+}
+
+.custom-nav-tabs .nav-item {
+  margin-right: 40px; 
+}
+
+.nav-tabs .nav-link:hover {
+  color: rgb(180, 180, 180);
+}
+
+.nav-tabs .nav-link:focus {
+  color: rgb(107, 107, 107) !important; 
+}
+
+a {
+  color: white;
+  font-size: medium;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 50;
+  
+}
+
