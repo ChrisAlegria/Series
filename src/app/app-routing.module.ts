@@ -25,11 +25,7 @@ const routes: Routes = [
   {
     path:'**',
     redirectTo: 'home'
-  },
-  { 
-    path: 'detalles/:id',
-    component: DetallesComponent 
-  },
+  }
 ];
 
 @NgModule({
