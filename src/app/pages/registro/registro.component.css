@@ -68,7 +68,7 @@ label{
 }
 
 .btn{
-  width: 468px;
+  width: 450px;
   height: 40px; 
   font-size: 70%;
   font-style: inherit;
@@ -93,7 +93,6 @@ label{
 }
 
 .red{
-  margin-left: 55px;
   margin-top: 90px;
   border: 2px, solid #dd1419;
   box-shadow: 0 0 40px 40px #dd1419 inset, 0 0 0 0 #dd1419;
@@ -182,10 +181,8 @@ label{
 }
 
 .select-dropdown {
-  min-width: 150px; /* Establece un ancho mínimo para el desplegable */
-  margin-left: 54px;
   margin-bottom: 10px;
-  width: 468px;
+  width: 450px;
   font-size: 70%;
   text-decoration: none;
   font-weight: 700;
