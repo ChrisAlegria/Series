@@ -211,3 +211,7 @@ label{
   background-color: #000; /* Color de fondo negro */
   color: #fff; /* Color del texto blanco */
 }
+
+.select-dropdown option.default-option {
+  color: #6c757d; /* Color de texto gris */
+}

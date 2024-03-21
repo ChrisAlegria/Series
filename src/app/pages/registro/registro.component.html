@@ -18,10 +18,13 @@
                 <button *ngIf="mostrarBotonRojo" type="button" class="btn red" (click)="insertarRegistro()">Insertar el registro de la serie a la BD</button>
                 <button *ngIf="selectedSerieId && showUpdateButton && !mostrarBotonVerde" type="button" class="btn green" (click)="cancelarEdicion()">Cancelar la edición</button>
                      
-                <select *ngIf="!showUpdateButton" class="form-control select-dropdown" [(ngModel)]="selectedSerieId" (change)="selectSerie()">
-                <option value="" disabled selected>Modifica una serie</option>
-                <option *ngFor="let serie of registros" [value]="serie.id">{{ serie.nombre }}</option>
-                </select>
+                <div class="select-container">
+                    <select *ngIf="!showUpdateButton" class="form-control select-dropdown" [(ngModel)]="selectedSerieId" (change)="selectSerie()">
+                      <option value="message" disabled>Modificar una serie</option>
+                      <option *ngFor="let serie of registros" [value]="serie.id">{{ serie.nombre }}</option>
+                    </select>
+                  </div>
+                  
             </div>
           </div>
 

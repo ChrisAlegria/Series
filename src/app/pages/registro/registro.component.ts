@@ -18,8 +18,8 @@ export class RegistroComponent implements OnInit {
   selectedSerieId: string | null = null; // Propiedad para almacenar el ID del registro seleccionado
   hideDeleteButton: boolean = false;
   mostrarBotonRojo: boolean = false;
-  mostrarBotonVerde: boolean = false; 
-
+  mostrarBotonVerde: boolean = false;
+  mensaje: string = 'Selecciona la serie a modificar'; // Mensaje para mostrar en el desplegable
 
   constructor(private registroService: RegistroService, private agregarModificarEliminarService: AgregarModificarEliminarService) {}
 
@@ -35,13 +35,17 @@ export class RegistroComponent implements OnInit {
     this.registroService.getGeneros().subscribe(generos => {
       this.generos = generos;
     });
+    // Mostrar el mensaje la primera vez
+    this.selectedSerieId = "message";
   }
 
   insertarRegistro() {
     const confirmacion = confirm('¿Estás seguro de que deseas registrar esta serie?');
     if (confirmacion) {
-    this.agregarModificarEliminarService.createRegistro(this.registro);
-    this.registro = new Registro();
+      this.agregarModificarEliminarService.createRegistro(this.registro);
+      this.registro = new Registro();
+      // Mostrar el mensaje después de insertar el registro
+      this.selectedSerieId = "message";
     }
   };
 
@@ -51,19 +55,23 @@ export class RegistroComponent implements OnInit {
       this.agregarModificarEliminarService.updateRegistro(this.registro);
       this.registro = new Registro();
       this.selectedSerieId = null;
-      this.showUpdateButton = false; // Oculta el botón azul al presionar el botón azul
-      this.mostrarBotonRojo = true; // Muestra el botón rojo al presionar el botón azul
+      this.showUpdateButton = false;
+      this.mostrarBotonRojo = true;
+      // Mostrar el mensaje después de actualizar el registro
+      this.selectedSerieId = "message";
     }
   }
 
   cancelarEdicion() {
     const confirmacion = confirm('¿Estás seguro de que deseas cancelar la edicion?');
     if (confirmacion) {
-    this.showUpdateButton = false;
-    this.mostrarBotonVerde = false; // Se oculta el botón verde al cancelar la edición
-    this.mostrarBotonRojo = true;
-    this.registro = new Registro();
-    this.selectedSerieId = null;
+      this.showUpdateButton = false;
+      this.mostrarBotonVerde = false;
+      this.mostrarBotonRojo = true;
+      this.registro = new Registro();
+      this.selectedSerieId = null;
+      // Mostrar el mensaje después de cancelar la edición
+      this.selectedSerieId = "message";
     }
   }
 
@@ -73,21 +81,26 @@ export class RegistroComponent implements OnInit {
       this.agregarModificarEliminarService.deleteRegistro(id);
       this.registro = new Registro();
       this.selectedSerieId = null;
-      this.showUpdateButton = false; // Oculta el botón azul al eliminar la serie
-      this.mostrarBotonRojo = true; // Muestra el botón rojo al presionar el botón morado
+      this.showUpdateButton = false;
+      this.mostrarBotonRojo = true;
+      // Mostrar el mensaje después de eliminar el registro
+      this.selectedSerieId = "message";
     }
-}
+  }
 
   selectSerie() {
-    if (this.selectedSerieId) {
+    if (this.selectedSerieId !== "message") {
       this.showUpdateButton = true;
       const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
       if (serieSeleccionada) {
         this.registro = serieSeleccionada;
       }
+      this.mostrarBotonRojo = false;
+      this.mostrarBotonVerde = false;
     } else {
       this.showUpdateButton = false;
       this.registro = new Registro();
+      this.mostrarBotonRojo = true;
     }
   }
-} 
+}
