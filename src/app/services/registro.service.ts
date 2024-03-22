@@ -53,10 +53,16 @@ export class RegistroService {
     return this.http.get(url);
   }
 
-  // Método para obtener el logo de Fanart de una serie
-  getFanartLogo(serieId: string): Observable<any> {
-    const apiKey = 'e4dd9d5f09fa05937f75431e95fe1a29'; // Reemplaza 'YOUR_API_KEY' con tu propia clave de API de Fanart.tv
-    const url = `https://webservice.fanart.tv/v3/movies/${serieId}?api_key=${apiKey}`;
+  getPoster(nombre: string, anio: number): Observable<any> {
+    const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
+    const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombre}&first_air_date_year=${anio}`;
     return this.http.get(url);
-  } 
+  }
+
+ // Método para obtener la imagen y los backdrops de una serie
+getImagenYBackdrops(nombreSerie: string, anio: number): Observable<any> {
+  const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
+  const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombreSerie}&first_air_date_year=${anio}`;
+  return this.http.get(url);
+}
 }

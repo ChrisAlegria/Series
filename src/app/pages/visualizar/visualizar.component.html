@@ -1,23 +1,23 @@
 <section class="cover-section section1">
-    <div class="container textStyle">
-        <h1>Visualiza tus Series</h1>
-        <p>En este apartado podras observar todas las series que has registrado, en la cual al darle click a 
-          cualquiera esta te mandara a un apartado donde podras ver toda la informacion que ingresaste en el registro,
-          ademas en este apartado podras modificar o eliminar tu serie, ademas podras agregarle temporadas a esta misma.
-        </p>
-    </div>
-  </section>
+  <div class="container textStyle">
+      <h1>Visualiza tus Series</h1>
+      <p>En este apartado podras observar todas las series que has registrado, en la cual al darle click a 
+        cualquiera esta te mandara a un apartado donde podras ver toda la informacion que ingresaste en el registro,
+        ademas en este apartado podras modificar o eliminar tu serie, ademas podras agregarle temporadas a esta misma.
+      </p>
+  </div>
+</section>
 
-  <div class="containerCard">
-    <div class="row">
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let registro of registros">
-        <div class="card">
-          <a [routerLink]="['/detalles', registro.nombre]">
-            <div class="card-body">
-              <img [src]="registro.portada" class="card-img-top" alt="...">
-            </div>
-          </a>
-        </div>
+<div class="containerCard">
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let registro of registros">
+      <div class="card">
+        <a [routerLink]="['/detalles', registro.nombre]">
+          <div class="card-body">
+            <img [src]="registro.imagenSerie" class="card-img-top" alt="...">
+          </div>
+        </a>
       </div>
     </div>
   </div>
+</div>

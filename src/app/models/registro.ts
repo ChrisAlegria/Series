@@ -3,6 +3,6 @@ export class Registro{
     nombre!:string;
     descripcion!:string;
     genero!:string;
-    ano!:number;
-    portada!:string;
+    anio!:number;
+    imagenSerie!: string;
     }

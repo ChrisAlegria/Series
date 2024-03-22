@@ -20,6 +20,15 @@ export class VisualizarComponent implements OnInit {
           id: doc.payload.doc.id
         };
       });
+
+      // Obtener imágenes de series de televisión para cada registro
+      this.registros.forEach(registro => {
+        this.registroService.getPoster(registro.nombre, registro.anio).subscribe((response: any) => {
+          if (response && response.results && response.results.length > 0) {
+            registro.imagenSerie = `https://image.tmdb.org/t/p/original${response.results[0].poster_path}`;
+          }
+        });
+      });
     });
   }
 }

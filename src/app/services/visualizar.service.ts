@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Registro } from '../models/registro';
 
@@ -8,7 +9,7 @@ import { Registro } from '../models/registro';
 })
 export class VisualizarService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private http: HttpClient) { }
 
   getRegistros(): Observable<Registro[]> {
     return this.firestore.collection<Registro>('registros').valueChanges();
