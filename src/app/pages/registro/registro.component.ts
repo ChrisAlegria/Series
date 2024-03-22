@@ -89,7 +89,9 @@ export class RegistroComponent implements OnInit {
   }
 
   selectSerie() {
+    // Verificar si se ha seleccionado una serie
     if (this.selectedSerieId !== "message") {
+      // Establecer las propiedades necesarias cuando se selecciona una serie
       this.showUpdateButton = true;
       const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
       if (serieSeleccionada) {
@@ -97,10 +99,15 @@ export class RegistroComponent implements OnInit {
       }
       this.mostrarBotonRojo = false;
       this.mostrarBotonVerde = false;
+      // Establecer el mensaje predeterminado para el género seleccionado
+      this.mensaje = "Selecciona un género";
     } else {
+      // Establecer las propiedades cuando no se ha seleccionado una serie
       this.showUpdateButton = false;
       this.registro = new Registro();
       this.mostrarBotonRojo = true;
+      // Establecer el mensaje predeterminado en el género
+      this.mensaje = "Selecciona un género";
     }
   }
 }
