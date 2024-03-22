@@ -5,4 +5,5 @@ export class Registro{
     genero!:string;
     anio!:number;
     imagenSerie!: string;
+    tvId!: number;
     }

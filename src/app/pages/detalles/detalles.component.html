@@ -2,10 +2,10 @@
   <div class="container col-12 col-lg-6 row textStyle">
     <h1>{{ nombreSerie.toUpperCase() }}</h1>
     <p *ngIf="detallesSerie && detallesSerie.length > 0">{{ detallesSerie[0].descripcion }}</p>
-    <img *ngIf="logo" [src]="logo" alt="Logo de la serie">
+    <img class="backdrop" *ngIf="logo" [src]="logo" alt="Logo de la serie">
   </div>
-</section>
+</section>  
 <section>
-  <img *ngIf="logo" [src]="logo" alt="Logo de la serie">
+  <img class="logo" *ngIf="logo" [src]="logo" alt="Logo de la serie">
 
 </section>

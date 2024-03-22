@@ -12,7 +12,7 @@
               <div class="textStyle">
                   <h1>Ingresa Aquí la Información de tu Serie</h1>
                   <p class="fontSize">En este apartado podrás agregar tus series favoritas y registrarlas en una base de datos, donde se almacenará el nombre de tu serie, su foto de portada, sus temporadas que le agregues y mucho más.</p>
-                <button *ngIf="!showUpdateButton && !mostrarBotonRojo" type="button" class="btn red" (click)="insertarRegistro()">Insertar el registro de la serie a la BD</button>
+                <button *ngIf="!showUpdateButton && !mostrarBotonRojo" type="button" class="btn red" [disabled]="!registro.nombre || !registro.descripcion || !registro.genero || !registro.anio || !registro.genero" (click)="insertarRegistro()">Insertar el registro de la serie a la BD</button>
                 <button *ngIf="showUpdateButton && !mostrarBotonVerde" type="button" class="btn blue" (click)="updateRegistro()">Actualizar Información</button>
                 <button *ngIf="selectedSerieId && showUpdateButton" type="button" class="btn purple" (click)="deleteRegistro(selectedSerieId)">Eliminar Serie</button>
                 <button *ngIf="mostrarBotonRojo" type="button" class="btn red" (click)="insertarRegistro()">Insertar el registro de la serie a la BD</button>

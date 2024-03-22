@@ -34,35 +34,34 @@ export class RegistroService {
   }
 
 
-  // Método para obtener la imagen de una serie
-  getImagenSerie(nombreSerie: string): Observable<any> {
-    const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4'; // Reemplaza 'TU_API_KEY' con tu propia clave de API de The Movie Database
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${nombreSerie}`;
-    return this.http.get(url);
-  }
+    // Método para obtener los registros
+    getRegistros(){
+      return this.firestore.collection('registros').snapshotChanges();
+    }
 
-  // Método para obtener los registros
-  getRegistros(){
-    return this.firestore.collection('registros').snapshotChanges();
-  }
+    // Método para obtener el ID de una serie
+    getSerieId(nombreSerie: string): Observable<any> {
+      const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
+      const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombreSerie}`;
+      return this.http.get(url);
+    }
 
-  // Método para obtener el ID de una serie
-  getSerieId(nombreSerie: string): Observable<any> {
+    getPoster(nombre: string, anio: number): Observable<any> {
+      const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
+      const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombre}&first_air_date_year=${anio}`;
+      return this.http.get(url);
+    }
+
+  // Método para obtener los backdrops de una serie
+  getBackdrops(nombreSerie: string, anio: number): Observable<any> {
     const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
-    const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombreSerie}`;
+    const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombreSerie}&first_air_date_year=${anio}`;
     return this.http.get(url);
   }
 
-  getPoster(nombre: string, anio: number): Observable<any> {
+  getLogos(nombreSerie: string, anio: number): Observable<any> {
     const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
-    const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombre}&first_air_date_year=${anio}`;
+    const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombreSerie}&first_air_date_year=${anio}&include_image_language=en`;
     return this.http.get(url);
   }
-
- // Método para obtener la imagen y los backdrops de una serie
-getImagenYBackdrops(nombreSerie: string, anio: number): Observable<any> {
-  const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
-  const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombreSerie}&first_air_date_year=${anio}`;
-  return this.http.get(url);
-}
 }
