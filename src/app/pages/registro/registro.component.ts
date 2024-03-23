@@ -122,27 +122,31 @@ export class RegistroComponent implements OnInit {
   updateSelectedGenre(event: any): void {
     const selectElement = event.target as HTMLSelectElement;
     const selectedOption = selectElement.options[selectElement.selectedIndex].text;
-
-    // Deshabilita la opción seleccionada para que no pueda ser seleccionada de nuevo
-    const selectedIndex = selectElement.selectedIndex;
-    if (selectedIndex !== -1) {
-      selectElement.options[selectedIndex].disabled = true;
-    }
-
+  
     // Reinicia el valor del select
     selectElement.value = 'null';
-
-    // Establece la variable opcionSeleccionada como true
-    this.opcionSeleccionada = true;
-
-    // Establece generoSeleccionado como true
-    this.generoSeleccionado = true;
-
-    // Agrega la opción seleccionada al registro de opciones seleccionadas
-    this.selectedOptions.push(selectedOption);
-
+  
+    // Si la opción seleccionada ya está en la lista de opciones seleccionadas, quítala
+    const index = this.selectedOptions.indexOf(selectedOption);
+    if (index !== -1) {
+      this.selectedOptions.splice(index, 1);
+    } else {
+      // Agrega la opción seleccionada al registro de opciones seleccionadas si no estaba presente
+      this.selectedOptions.push(selectedOption);
+    }
+  
     // Actualiza el mensaje con todas las opciones seleccionadas
     this.updateMessage();
+  
+    // Iterar sobre todas las opciones y cambiar su color según estén seleccionadas o no
+    Array.from(selectElement.options).forEach(option => {
+      const optionText = option.text;
+      if (this.selectedOptions.includes(optionText)) {
+        option.style.color = 'red'; // Está seleccionada, por lo que cambia el color a rojo
+      } else {
+        option.style.color = 'black'; // No está seleccionada, por lo que cambia el color a negro
+      }
+    });
   }
 
   updateMessage(): void {

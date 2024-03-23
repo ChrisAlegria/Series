@@ -216,6 +216,6 @@ label{
   color: #6c757d; /* Color de texto gris */
 }
 
-.genero-agregado {
+.selected-option {
   color: red;
 }
