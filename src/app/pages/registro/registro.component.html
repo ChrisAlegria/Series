@@ -41,7 +41,7 @@
                 <label>Género de la Serie</label>
                 <select class="form-control" (change)="updateSelectedGenre($event)">
                   <option value="null" disabled [selected]="true">{{ mensaje }}</option>
-                  <option *ngFor="let genre of generos" [value]="genre">{{ genre }}</option>
+                  <option *ngFor="let genre of generos" [value]="genre" [style.color]="isGenreSelected(genre) ? 'red' : 'black'">{{ genre }}</option>
                 </select>
               </p>
               <p>

@@ -234,5 +234,10 @@ checkButtonStatus() {
     onCalificacionChange(): void {
       this.calificacionCambiada = true;
     }
+
+    isGenreSelected(genre: string): boolean {
+      return this.selectedOptions.includes(genre);
+    }
+    
   }
 
