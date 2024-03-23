@@ -103,7 +103,7 @@ export class RegistroComponent implements OnInit {
       this.registro = new Registro();
       this.selectedSerieId = null;
       this.showUpdateButton = false;
-      this.mostrarBotonRojo = true; // Asegúrate de establecer mostrarBotonRojo en true
+      this.mostrarBotonRojo = true; 
       // Mostrar el mensaje después de eliminar el registro
       this.selectedSerieId = "message";
     }
