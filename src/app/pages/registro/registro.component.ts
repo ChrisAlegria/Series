@@ -47,6 +47,9 @@ export class RegistroComponent implements OnInit {
   insertarRegistro() {
     const confirmacion = confirm('¿Estás seguro de que deseas registrar esta serie?');
     if (confirmacion) {
+      // Agregar los géneros seleccionados al registro antes de insertarlo
+      this.registro.genero = this.selectedOptions;
+
       this.agregarModificarEliminarService.createRegistro(this.registro);
       this.registro = new Registro();
       // Mostrar el mensaje después de insertar el registro
@@ -57,6 +60,9 @@ export class RegistroComponent implements OnInit {
   updateRegistro() {
     const confirmacion = confirm('¿Estás seguro de que deseas actualizar esta serie?');
     if (confirmacion) {
+      // Agregar los géneros seleccionados al registro antes de actualizarlo
+      this.registro.genero = this.selectedOptions;
+
       this.agregarModificarEliminarService.updateRegistro(this.registro);
       this.registro = new Registro();
       this.selectedSerieId = null;
@@ -116,37 +122,37 @@ export class RegistroComponent implements OnInit {
   updateSelectedGenre(event: any): void {
     const selectElement = event.target as HTMLSelectElement;
     const selectedOption = selectElement.options[selectElement.selectedIndex].text;
-  
+
     // Deshabilita la opción seleccionada para que no pueda ser seleccionada de nuevo
     const selectedIndex = selectElement.selectedIndex;
     if (selectedIndex !== -1) {
       selectElement.options[selectedIndex].disabled = true;
     }
-  
+
     // Reinicia el valor del select
     selectElement.value = 'null';
-  
+
     // Establece la variable opcionSeleccionada como true
     this.opcionSeleccionada = true;
-  
+
     // Establece generoSeleccionado como true
     this.generoSeleccionado = true;
-  
+
     // Agrega la opción seleccionada al registro de opciones seleccionadas
     this.selectedOptions.push(selectedOption);
-  
+
     // Actualiza el mensaje con todas las opciones seleccionadas
     this.updateMessage();
   }
 
-updateMessage(): void {
+  updateMessage(): void {
     // Construye el mensaje con todas las opciones seleccionadas
     this.mensaje = '';
     for (let i = 0; i < this.selectedOptions.length; i++) {
-        if (i !== 0) {
-            this.mensaje += ', '; // Agrega una coma entre las opciones
-        }
-        this.mensaje += this.selectedOptions[i]; // Agrega la opción al mensaje
+      if (i !== 0) {
+        this.mensaje += ', '; // Agrega una coma entre las opciones
+      }
+      this.mensaje += this.selectedOptions[i]; // Agrega la opción al mensaje
     }
   }
 
