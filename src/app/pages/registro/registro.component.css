@@ -217,5 +217,9 @@ label{
 }
 
 .selected-option {
-  color: red;
+  color: red; /* Color rojo para las opciones seleccionadas */
+}
+
+.unselected-option {
+  color: black; /* Color negro para las opciones no seleccionadas */
 }
