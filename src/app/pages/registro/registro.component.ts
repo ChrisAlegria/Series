@@ -104,11 +104,22 @@ export class RegistroComponent implements OnInit {
       this.showUpdateButton = true;
       const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
       if (serieSeleccionada) {
-        // Obtener el género de la serie seleccionada
-        const generoSeleccionado = serieSeleccionada.genero;
-        // Actualizar el mensaje con el género seleccionado
-        this.mensaje = `${generoSeleccionado}`;
+        // Obtener el género o los géneros de la serie seleccionada
+        const generosSeleccionados = serieSeleccionada.genero;
+        if (Array.isArray(generosSeleccionados)) {
+          // Si hay más de un género, actualiza el mensaje con los géneros seleccionados
+          this.mensaje = generosSeleccionados.join(', ');
+        } else {
+          // Si hay solo un género, actualiza el mensaje con ese género
+          this.mensaje = generosSeleccionados;
+        }
         this.registro = serieSeleccionada;
+  
+        // Actualizar automáticamente los géneros seleccionados
+        this.selectedOptions = Array.isArray(generosSeleccionados) ? generosSeleccionados : [generosSeleccionados];
+  
+        // Actualizar el mensaje con todas las opciones seleccionadas
+        this.updateMessage();
       }
       this.mostrarBotonRojo = false;
       this.mostrarBotonVerde = false;
@@ -118,6 +129,7 @@ export class RegistroComponent implements OnInit {
       this.mostrarBotonRojo = true;
     }
   }
+  
 
   updateSelectedGenre(event: any): void {
     const selectElement = event.target as HTMLSelectElement;
