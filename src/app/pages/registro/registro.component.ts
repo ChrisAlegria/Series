@@ -148,6 +148,7 @@ export class RegistroComponent implements OnInit {
       }
     });
   }
+  
 
   updateMessage(): void {
     // Construye el mensaje con todas las opciones seleccionadas
