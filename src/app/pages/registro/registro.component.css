@@ -215,11 +215,3 @@ label{
 .select-dropdown option.default-option {
   color: #6c757d; /* Color de texto gris */
 }
-
-.selected-option {
-  color: red; /* Color rojo para las opciones seleccionadas */
-}
-
-.unselected-option {
-  color: black; /* Color negro para las opciones no seleccionadas */
-}

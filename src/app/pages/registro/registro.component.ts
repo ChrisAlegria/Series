@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegistroService } from '../../services/registro.service';
 import { Registro } from '../../models/registro';
 import { AgregarModificarEliminarService } from '../../services/agregarModificar-eliminar.service';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-registro',
@@ -23,6 +24,15 @@ export class RegistroComponent implements OnInit {
   opcionSeleccionada: boolean = false; // Variable para controlar si se ha seleccionado una opción
   selectedOptions: string[] = []; // Mantenemos un registro de las opciones seleccionadas
   generoSeleccionado: boolean = false; // Variable para controlar si se ha seleccionado un género
+  nombreIngresado: boolean = false;
+  descripcionIngresada: boolean = false;
+  anioIngresado: boolean = false;
+  calificacionIngresada: boolean = false;
+  nombreCambiado: boolean = false;
+  descripcionCambiada: boolean = false;
+  anioCambiado: boolean = false;
+  generoCambiado: boolean = false;
+  calificacionCambiada: boolean = false;
 
   
 
@@ -74,18 +84,18 @@ export class RegistroComponent implements OnInit {
   }
 
   cancelarEdicion() {
-    const confirmacion = confirm('¿Estás seguro de que deseas cancelar la edicion?');
+    const confirmacion = confirm('¿Estás seguro de que deseas cancelar la edición?');
     if (confirmacion) {
       this.showUpdateButton = false;
       this.mostrarBotonVerde = false;
-      this.mostrarBotonRojo = true;
+      this.mostrarBotonRojo = true; // Asegúrate de establecer mostrarBotonRojo en true
       this.registro = new Registro();
       this.selectedSerieId = null;
       // Mostrar el mensaje después de cancelar la edición
       this.selectedSerieId = "message";
     }
   }
-
+  
   deleteRegistro(id: string) {
     const confirmacion = confirm('¿Estás seguro de que deseas eliminar esta serie?');
     if (confirmacion) {
@@ -93,42 +103,52 @@ export class RegistroComponent implements OnInit {
       this.registro = new Registro();
       this.selectedSerieId = null;
       this.showUpdateButton = false;
-      this.mostrarBotonRojo = true;
+      this.mostrarBotonRojo = true; // Asegúrate de establecer mostrarBotonRojo en true
       // Mostrar el mensaje después de eliminar el registro
       this.selectedSerieId = "message";
     }
   }
 
- selectSerie() {
-  if (this.selectedSerieId !== "message") {
-    this.showUpdateButton = true;
-    const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
-    if (serieSeleccionada) {
-      // Obtener el género o los géneros de la serie seleccionada
-      const generosSeleccionados = serieSeleccionada.genero;
-      if (Array.isArray(generosSeleccionados)) {
-        // Si hay más de un género, actualiza el mensaje con los géneros seleccionados
-        this.mensaje = generosSeleccionados.join(', ');
-      } else {
-        // Si hay solo un género, actualiza el mensaje con ese género
-        this.mensaje = generosSeleccionados;
+  selectSerie() {
+    if (this.selectedSerieId !== "message") {
+      this.showUpdateButton = true;
+      const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
+      if (serieSeleccionada) {
+        // Obtener el género o los géneros de la serie seleccionada
+        const generosSeleccionados = serieSeleccionada.genero;
+        if (Array.isArray(generosSeleccionados)) {
+          // Si hay más de un género, actualiza el mensaje con los géneros seleccionados
+          this.mensaje = generosSeleccionados.join(', ');
+        } else {
+          // Si hay solo un género, actualiza el mensaje con ese género
+          this.mensaje = generosSeleccionados;
+        }
+        this.registro = serieSeleccionada;
+  
+        // Actualizar automáticamente los géneros seleccionados
+        this.selectedOptions = Array.isArray(generosSeleccionados) ? generosSeleccionados : [generosSeleccionados];
+  
+        // Actualizar el mensaje con todas las opciones seleccionadas
+        this.updateMessage();
+  
+        // Desactivar el botón verde al seleccionar una serie
+        this.mostrarBotonVerde = false;
+  
+        // Reiniciar las variables de control de cambios
+        this.nombreCambiado = false;
+        this.descripcionCambiada = false;
+        this.anioCambiado = false;
+        this.calificacionCambiada = false;
+        this.generoCambiado = false;
       }
-      this.registro = serieSeleccionada;
-
-      // Actualizar automáticamente los géneros seleccionados
-      this.selectedOptions = Array.isArray(generosSeleccionados) ? generosSeleccionados : [generosSeleccionados];
-
-      // Actualizar el mensaje con todas las opciones seleccionadas
-      this.updateMessage();
+      this.mostrarBotonRojo = false;
+    } else {
+      this.showUpdateButton = false;
+      this.registro = new Registro();
+      this.mostrarBotonRojo = true;
+      this.mostrarBotonVerde = false; // Desactivar el botón azul al seleccionar un mensaje de "Modificar una serie"
     }
-    this.mostrarBotonRojo = false;
-    this.mostrarBotonVerde = false;
-  } else {
-    this.showUpdateButton = false;
-    this.registro = new Registro();
-    this.mostrarBotonRojo = true;
   }
-}
 
 
 updateSelectedGenre(event: any): void {
@@ -193,4 +213,26 @@ checkButtonStatus() {
       selectElement.value = 'null';
     }
   }
-}
+
+    // Métodos para rastrear los cambios en cada campo del formulario
+    onNombreChange(): void {
+      this.nombreCambiado = true;
+    }
+  
+    onDescripcionChange(): void {
+      this.descripcionCambiada = true;
+    }
+  
+    onAnioChange(): void {
+      this.anioCambiado = true;
+    }
+  
+    onGeneroChange(): void {
+      this.generoCambiado = true;
+    }
+  
+    onCalificacionChange(): void {
+      this.calificacionCambiada = true;
+    }
+  }
+
