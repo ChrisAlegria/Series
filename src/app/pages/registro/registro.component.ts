@@ -19,7 +19,12 @@ export class RegistroComponent implements OnInit {
   hideDeleteButton: boolean = false;
   mostrarBotonRojo: boolean = false;
   mostrarBotonVerde: boolean = false;
-  mensaje: string = 'Selecciona la serie a modificar'; // Mensaje para mostrar en el desplegable
+  mensaje: string = 'Selecciona un genero para la serie'; // Mensaje para mostrar en el desplegable
+  opcionSeleccionada: boolean = false; // Variable para controlar si se ha seleccionado una opción
+  selectedOptions: string[] = []; // Mantenemos un registro de las opciones seleccionadas
+  generoSeleccionado: boolean = false; // Variable para controlar si se ha seleccionado un género
+
+  
 
   constructor(private registroService: RegistroService, private agregarModificarEliminarService: AgregarModificarEliminarService) {}
 
@@ -89,25 +94,69 @@ export class RegistroComponent implements OnInit {
   }
 
   selectSerie() {
-    // Verificar si se ha seleccionado una serie
     if (this.selectedSerieId !== "message") {
-      // Establecer las propiedades necesarias cuando se selecciona una serie
       this.showUpdateButton = true;
       const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
       if (serieSeleccionada) {
+        // Obtener el género de la serie seleccionada
+        const generoSeleccionado = serieSeleccionada.genero;
+        // Actualizar el mensaje con el género seleccionado
+        this.mensaje = `${generoSeleccionado}`;
         this.registro = serieSeleccionada;
       }
       this.mostrarBotonRojo = false;
       this.mostrarBotonVerde = false;
-      // Establecer el mensaje predeterminado para el género seleccionado
-      this.mensaje = "Selecciona un género";
     } else {
-      // Establecer las propiedades cuando no se ha seleccionado una serie
       this.showUpdateButton = false;
       this.registro = new Registro();
       this.mostrarBotonRojo = true;
-      // Establecer el mensaje predeterminado en el género
-      this.mensaje = "Selecciona un género";
+    }
+  }
+
+  updateSelectedGenre(event: any): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedOption = selectElement.options[selectElement.selectedIndex].text;
+  
+    // Deshabilita la opción seleccionada para que no pueda ser seleccionada de nuevo
+    const selectedIndex = selectElement.selectedIndex;
+    if (selectedIndex !== -1) {
+      selectElement.options[selectedIndex].disabled = true;
+    }
+  
+    // Reinicia el valor del select
+    selectElement.value = 'null';
+  
+    // Establece la variable opcionSeleccionada como true
+    this.opcionSeleccionada = true;
+  
+    // Establece generoSeleccionado como true
+    this.generoSeleccionado = true;
+  
+    // Agrega la opción seleccionada al registro de opciones seleccionadas
+    this.selectedOptions.push(selectedOption);
+  
+    // Actualiza el mensaje con todas las opciones seleccionadas
+    this.updateMessage();
+  }
+
+updateMessage(): void {
+    // Construye el mensaje con todas las opciones seleccionadas
+    this.mensaje = '';
+    for (let i = 0; i < this.selectedOptions.length; i++) {
+        if (i !== 0) {
+            this.mensaje += ', '; // Agrega una coma entre las opciones
+        }
+        this.mensaje += this.selectedOptions[i]; // Agrega la opción al mensaje
+    }
+  }
+
+  resetMessageAndSelect(): void {
+    this.mensaje = 'Selecciona un género para la serie';
+    this.selectedSerieId = "message";
+    // Obtener el elemento select y reiniciar su valor
+    const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.value = 'null';
     }
   }
 }

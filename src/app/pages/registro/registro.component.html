@@ -12,12 +12,11 @@
               <div class="textStyle">
                   <h1>Ingresa Aquí la Información de tu Serie</h1>
                   <p class="fontSize">En este apartado podrás agregar tus series favoritas y registrarlas en una base de datos, donde se almacenará el nombre de tu serie, su foto de portada, sus temporadas que le agregues y mucho más.</p>
-                <button *ngIf="!showUpdateButton && !mostrarBotonRojo" type="button" class="btn red" (click)="insertarRegistro()" [disabled]="!registro.nombre || !registro.descripcion || !registro.genero || !registro.anio || registro.genero">Insertar el registro de la serie a la BD</button>
-                <button *ngIf="showUpdateButton && !mostrarBotonVerde" type="button" class="btn blue" (click)="updateRegistro()">Actualizar Información</button>
-                <button *ngIf="selectedSerieId && showUpdateButton" type="button" class="btn purple" (click)="deleteRegistro(selectedSerieId)">Eliminar Serie</button>
-                <button *ngIf="mostrarBotonRojo" type="button" class="btn red" (click)="insertarRegistro()">Insertar el registro de la serie a la BD</button>
-                <button *ngIf="selectedSerieId && showUpdateButton && !mostrarBotonVerde" type="button" class="btn green" (click)="cancelarEdicion()">Cancelar la edición</button>
-                     
+                  <button *ngIf="!showUpdateButton && !mostrarBotonRojo" type="button" class="btn red" (click)="insertarRegistro(); resetMessageAndSelect()" [disabled]="!registro.nombre || !registro.descripcion || !registro.anio || !generoSeleccionado || !registro.porcentajeCalificacion">Insertar el registro de la serie a la BD</button>                  <button *ngIf="showUpdateButton && !mostrarBotonVerde" type="button" class="btn blue" (click)="updateRegistro(); resetMessageAndSelect()">Actualizar Información</button>
+                  <button *ngIf="selectedSerieId && showUpdateButton" type="button" class="btn purple" (click)="deleteRegistro(selectedSerieId); resetMessageAndSelect()">Eliminar Serie</button>
+                  <button *ngIf="mostrarBotonRojo" type="button" class="btn red" (click)="insertarRegistro(); resetMessageAndSelect()">Insertar el registro de la serie a la BD</button>
+                  <button *ngIf="selectedSerieId && showUpdateButton && !mostrarBotonVerde" type="button" class="btn green" (click)="cancelarEdicion(); resetMessageAndSelect()">Cancelar la edición</button>
+                  
                 <div class="select-container">
                     <select *ngIf="!showUpdateButton" class="form-control select-dropdown" [(ngModel)]="selectedSerieId" (change)="selectSerie()">
                       <option value="message" disabled>Modificar una serie</option>
@@ -40,14 +39,19 @@
                       <input type="text" placeholder="Ingresa una descripción de tu serie" class="form-control" [(ngModel)]="registro.descripcion"/>
                   </p>
                   <p>
-                      <label>Género de la Serie</label>
-                      <select class="form-control" [(ngModel)]="registro.genero">
-                          <option *ngFor="let genero of generos">{{ genero }}</option>
-                      </select>
-                  </p>
+                    <label>Género de la Serie</label>
+                    <select class="form-control" (change)="updateSelectedGenre($event)">
+                      <option value="null" disabled [selected]="true">{{ mensaje }}</option>
+                      <option *ngFor="let genre of generos" [value]="genre">{{ genre }}</option>
+                    </select>
+                </p>
                   <p>
                       <label>Año de Publicación de la Serie</label>
-                      <input type="number" min="0" placeholder="Ingresa el año de lanzamiento de tu serie" class="form-control" [(ngModel)]="registro.anio"/>
+                      <input type="number" min="0" max="2024" placeholder="Ingresa el año de lanzamiento de tu serie" class="form-control" [(ngModel)]="registro.anio"/>
+                  </p>
+                  <p>
+                    <label>Porcentaje de Calificación</label>
+                    <input type="number" min="0" max="100" placeholder="Ingrese el porcentaje de calificación" class="form-control" [(ngModel)]="registro.porcentajeCalificacion"/>
                   </p>
               </div>
           </div>

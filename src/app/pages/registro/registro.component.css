@@ -215,3 +215,7 @@ label{
 .select-dropdown option.default-option {
   color: #6c757d; /* Color de texto gris */
 }
+
+.genero-agregado {
+  color: red;
+}
