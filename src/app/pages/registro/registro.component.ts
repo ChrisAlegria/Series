@@ -149,43 +149,7 @@ export class RegistroComponent implements OnInit {
       this.mostrarBotonVerde = false; // Desactivar el botón azul al seleccionar un mensaje de "Modificar una serie"
     }
   }
-
-
-updateSelectedGenre(event: any): void {
-  const selectElement = event.target as HTMLSelectElement;
-  const selectedOption = selectElement.options[selectElement.selectedIndex].text;
-
-  // Reinicia el valor del select
-  selectElement.value = 'null';
-
-  // Si la opción seleccionada ya está en la lista de opciones seleccionadas, quítala
-  const index = this.selectedOptions.indexOf(selectedOption);
-  if (index !== -1) {
-    this.selectedOptions.splice(index, 1);
-  } else {
-    // Agrega la opción seleccionada al registro de opciones seleccionadas si no estaba presente
-    this.selectedOptions.push(selectedOption);
-  }
-
-  // Verifica si hay al menos una opción seleccionada
-  this.generoSeleccionado = this.selectedOptions.length > 0;
-
-  // Actualiza el mensaje con todas las opciones seleccionadas
-  this.updateMessage();
-
-  // Iterar sobre todas las opciones y cambiar su color según estén seleccionadas o no
-  Array.from(selectElement.options).forEach(option => {
-    const optionText = option.text;
-    if (this.selectedOptions.includes(optionText)) {
-      option.style.color = 'red'; // Está seleccionada, por lo que cambia el color a rojo
-    } else {
-      option.style.color = 'black'; // No está seleccionada, por lo que cambia el color a negro
-    }
-  });
-
-  // Luego de actualizar las opciones seleccionadas, verifica si el botón debe habilitarse
-  this.checkButtonStatus();
-}
+  
 
 checkButtonStatus() {
   // Habilitar el botón si todos los campos obligatorios están llenos y al menos un género está seleccionado
