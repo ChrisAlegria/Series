@@ -9,7 +9,7 @@ import { RegistroService } from '../../services/registro.service';
 })
 export class VisualizarComponent implements OnInit {
   registros: Registro[] = [];
-  imagenPorDefecto = 'https://www.usm.edu/images/image-not-available_1.jpg';
+  imagenPorDefecto = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/ERR0R_NO_IMAGE_FOUND.jpg/337px-ERR0R_NO_IMAGE_FOUND.jpg?20220621174220';
 
   constructor(private registroService: RegistroService) {}
 
