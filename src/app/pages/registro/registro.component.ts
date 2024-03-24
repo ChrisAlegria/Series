@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RegistroService } from '../../services/registro.service';
 import { Registro } from '../../models/registro';
 import { AgregarModificarEliminarService } from '../../services/agregarModificar-eliminar.service';
-import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-registro',
@@ -205,8 +204,9 @@ checkButtonStatus() {
   }
 
   resetMessageAndSelect(): void {
-    this.mensaje = 'Selecciona un género para la serie';
+    // Restablecer solo el selectedSerieId sin cambiar el mensaje
     this.selectedSerieId = "message";
+  
     // Obtener el elemento select y reiniciar su valor
     const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
     if (selectElement) {
