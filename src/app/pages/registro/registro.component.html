@@ -13,9 +13,9 @@
                   <h1>Ingresa Aquí la Información de tu Serie</h1>
                   <p class="fontSize">En este apartado podrás agregar tus series favoritas y registrarlas en una base de datos, donde se almacenará el nombre de tu serie, su foto de portada, sus temporadas que le agregues y mucho más.</p>
                   <button *ngIf="!showUpdateButton" type="button" class="btn red"  (click)="insertarRegistro(); resetMessageAndSelect()" [disabled]="!registro.nombre || !registro.descripcion || !registro.anio || !generoSeleccionado || !registro.porcentajeCalificacion">Insertar el registro de la serie a la BD</button>                  
-                  <button *ngIf="showUpdateButton && !mostrarBotonVerde" type="button" class="btn blue" (click)="updateRegistro(); resetMessageAndSelect()" [disabled]="!(nombreCambiado || descripcionCambiada || generoSeleccionado || anioCambiado || calificacionCambiada)">Actualizar Información</button>
-                  <button *ngIf="selectedSerieId && showUpdateButton" type="button" class="btn purple" (click)="deleteRegistro(selectedSerieId); resetMessageAndSelect()">Eliminar Serie</button>
-                  <button *ngIf="selectedSerieId && showUpdateButton && !mostrarBotonVerde" type="button" class="btn green" (click)="cancelarEdicion(); resetMessageAndSelect()">Cancelar la edición</button>
+                  <button *ngIf="showUpdateButton && !mostrarBotonVerde" type="button" class="btn blue" (click)="updateRegistro();" [disabled]="!(nombreCambiado || descripcionCambiada || generoSeleccionado || anioCambiado || calificacionCambiada)">Actualizar Información</button>
+                  <button *ngIf="selectedSerieId && showUpdateButton" type="button" class="btn purple" (click)="deleteRegistro(selectedSerieId);">Eliminar Serie</button>
+                  <button *ngIf="selectedSerieId && showUpdateButton && !mostrarBotonVerde" type="button" class="btn green" (click)="cancelarEdicion();">Cancelar la edición</button>
                   
                 <div class="select-container">
                     <select *ngIf="!showUpdateButton" class="form-control select-dropdown" [(ngModel)]="selectedSerieId" (change)="selectSerie()">

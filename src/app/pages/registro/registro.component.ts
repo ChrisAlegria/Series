@@ -71,40 +71,87 @@ export class RegistroComponent implements OnInit {
     if (confirmacion) {
       // Agregar los géneros seleccionados al registro antes de actualizarlo
       this.registro.genero = this.selectedOptions;
-
+  
+      // Llamar al servicio para actualizar el registro
       this.agregarModificarEliminarService.updateRegistro(this.registro);
+  
+      // Reiniciar el registro
       this.registro = new Registro();
+  
+      // Reiniciar el ID seleccionado
       this.selectedSerieId = null;
+  
+      // Reiniciar las variables de control de botones
       this.showUpdateButton = false;
+      this.mostrarBotonVerde = false;
       this.mostrarBotonRojo = true;
-      // Mostrar el mensaje después de actualizar el registro
-      this.selectedSerieId = "message";
+  
+      // Reiniciar el mensaje y las opciones seleccionadas
+      this.resetMessageAndSelect();
+  
+      // Reiniciar el color de las opciones del desplegable a negro
+      const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
+      if (selectElement) {
+        Array.from(selectElement.options).forEach(option => {
+          option.style.color = 'black';
+        });
+      }
     }
   }
 
   cancelarEdicion() {
     const confirmacion = confirm('¿Estás seguro de que deseas cancelar la edición?');
     if (confirmacion) {
+      // Reiniciar el registro
+      this.registro = new Registro();
+      // Reiniciar el ID seleccionado
+      this.selectedSerieId = null;
+      // Reiniciar las variables de control de botones
       this.showUpdateButton = false;
       this.mostrarBotonVerde = false;
-      this.mostrarBotonRojo = true; // Asegúrate de establecer mostrarBotonRojo en true
-      this.registro = new Registro();
-      this.selectedSerieId = null;
-      // Mostrar el mensaje después de cancelar la edición
-      this.selectedSerieId = "message";
+      this.mostrarBotonRojo = true;
+  
+      // Reiniciar el mensaje y las opciones seleccionadas
+      this.resetMessageAndSelect();
+  
+      // Reiniciar el color de las opciones del desplegable a negro
+      const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
+      if (selectElement) {
+        Array.from(selectElement.options).forEach(option => {
+          option.style.color = 'black';
+        });
+      }
     }
   }
+  
   
   deleteRegistro(id: string) {
     const confirmacion = confirm('¿Estás seguro de que deseas eliminar esta serie?');
     if (confirmacion) {
+      // Llamar al servicio para eliminar el registro
       this.agregarModificarEliminarService.deleteRegistro(id);
+  
+      // Reiniciar el registro
       this.registro = new Registro();
+  
+      // Reiniciar el ID seleccionado
       this.selectedSerieId = null;
+  
+      // Reiniciar las variables de control de botones
       this.showUpdateButton = false;
-      this.mostrarBotonRojo = true; 
-      // Mostrar el mensaje después de eliminar el registro
-      this.selectedSerieId = "message";
+      this.mostrarBotonVerde = false;
+      this.mostrarBotonRojo = true;
+  
+      // Reiniciar el mensaje y las opciones seleccionadas
+      this.resetMessageAndSelect();
+  
+      // Reiniciar el color de las opciones del desplegable a negro
+      const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
+      if (selectElement) {
+        Array.from(selectElement.options).forEach(option => {
+          option.style.color = 'black';
+        });
+      }
     }
   }
 
@@ -203,16 +250,27 @@ checkButtonStatus() {
     }
   }
 
-  resetMessageAndSelect(): void {
-    // Restablecer solo el selectedSerieId sin cambiar el mensaje
-    this.selectedSerieId = "message";
+  resetMessageAndSelect(confirmDelete: boolean = false): void {
+    if (!confirmDelete) {
+      // Restablecer solo el selectedSerieId sin cambiar el mensaje
+      this.selectedSerieId = "message";
+      
+      // Limpiar las opciones seleccionadas
+      this.selectedOptions = [];
   
-    // Obtener el elemento select y reiniciar su valor
-    const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
-    if (selectElement) {
-      selectElement.value = 'null';
+      // Reiniciar el mensaje
+      this.mensaje = 'Selecciona un genero para la serie';
+  
+      // Reiniciar el color de las opciones del desplegable a negro
+      const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
+      if (selectElement) {
+        Array.from(selectElement.options).forEach(option => {
+          option.style.color = 'black';
+        });
+      }
     }
   }
+  
 
     // Métodos para rastrear los cambios en cada campo del formulario
     onNombreChange(): void {
