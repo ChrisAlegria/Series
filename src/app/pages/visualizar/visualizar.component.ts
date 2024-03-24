@@ -9,6 +9,7 @@ import { RegistroService } from '../../services/registro.service';
 })
 export class VisualizarComponent implements OnInit {
   registros: Registro[] = [];
+  imagenPorDefecto = 'https://www.usm.edu/images/image-not-available_1.jpg';
 
   constructor(private registroService: RegistroService) {}
 
@@ -26,6 +27,8 @@ export class VisualizarComponent implements OnInit {
         this.registroService.getPoster(registro.nombre, registro.anio).subscribe((response: any) => {
           if (response && response.results && response.results.length > 0) {
             registro.imagenSerie = `https://image.tmdb.org/t/p/original${response.results[0].poster_path}`;
+          } else {
+            registro.imagenSerie = this.imagenPorDefecto; // Asigna la imagen por defecto
           }
         });
       });
