@@ -1,9 +1,9 @@
 <section class="cover-section section1">
   <div class="container textStyle">
       <h1>Visualiza tus Series</h1>
-      <p>En este apartado podras observar todas las series que has registrado, en la cual al darle click a 
-        cualquiera esta te mandara a un apartado donde podras ver toda la informacion que ingresaste en el registro,
-        ademas en este apartado podras modificar o eliminar tu serie, ademas podras agregarle temporadas a esta misma.
+      <p>En este apartado podrás observar todas las series que has registrado, en la cual al darle click a 
+        cualquiera esta te mandará a un apartado donde podrás ver toda la información que ingresaste en el registro,
+        además en este apartado podrás modificar o eliminar tu serie, además podrás agregarle temporadas a esta misma.
       </p>
   </div>
 </section>
@@ -11,9 +11,27 @@
 <div class="containerCard">
   <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let registro of registros">
-      <div class="card card-body">
-        <a [routerLink]="['/detalles', registro.nombre]">
-            <img [src]="registro.imagenSerie ? registro.imagenSerie : imagenPorDefecto" class="card-img-top" alt="...">
+      <!-- Envuelve toda la tarjeta dentro del enlace -->
+        <div class="info">
+          <a [routerLink]="['/detalles', registro.nombre]" class="card-link">
+
+          <!-- Imagen de la serie -->
+          <img [src]="registro.imagenSerie ? registro.imagenSerie : imagenPorDefecto" class="card-img-top" alt="...">
+
+          <!-- Contenido de la tarjeta -->
+          <div class="card-content">
+            <!-- Título de la serie -->
+            <h5 class="card-title text-white">{{ registro.nombre }}</h5>
+
+            <!-- Información adicional -->
+            <div class="mt-2 additional-info d-flex align-items-center">
+              <span class="mr-1 text-white">⭐ {{ registro.porcentajeCalificacion }}%</span> <!-- Estrella y porcentaje -->
+              <span class="separer text-white">|</span> <!-- Separador -->
+              <span class="ml-1 text-white">{{ registro.anio }}</span> <!-- Año de lanzamiento -->
+              <span class="separer text-white">|</span> <!-- Separador -->
+              <span class="ml-1 text-white additional-info">{{ registro.genero }}</span> <!-- Género -->
+            </div>
+          </div>
         </a>
       </div>
     </div>

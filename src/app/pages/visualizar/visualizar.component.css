@@ -65,27 +65,7 @@ label{
     text-align: center; /* Centra horizontalmente el texto */
     padding-top: 50px; /* Espacio superior para centrar verticalmente el texto */
   }
-
-  .serie-box {
-    width: 200px;
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
   
-  .serie-box img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  .serie-box h3, .serie-box p {
-    margin: 0;
-    text-align: center;
-  }
-
   .containerCard{
     padding: 2rem 5%; /* Padding igual al de las section */
   }
@@ -119,4 +99,31 @@ label{
   /* Alinear las nuevas tarjetas a la izquierda */
 .containerCard .row {
   justify-content: flex-start;
+}
+
+.separer{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.card-title{
+  margin-top: 12PX;
+}
+
+.card-title{
+font-size: 1.1rem;
+margin-bottom: 1px;
+}
+
+.additional-info {
+  font-size: 0.7rem; /* Tamaño del texto para el título y la información adicional */
+}
+
+.card-link {
+  text-decoration: none; /* Eliminar subrayado */
+  color: inherit; /* Heredar el color del texto */
+}
+
+.card-link:hover {
+  text-decoration: none; /* Eliminar subrayado en hover */
 }

@@ -4,12 +4,16 @@ import { Registro } from '../models/registro';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http'; // Importa HttpClient
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroService {
+  private apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
+
 
   constructor(private firestore:AngularFirestore, private http: HttpClient) { }
 
@@ -56,12 +60,6 @@ export class RegistroService {
   getBackdrops(nombreSerie: string, anio: number): Observable<any> {
     const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
     const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombreSerie}&first_air_date_year=${anio}`;
-    return this.http.get(url);
-  }
-
-  getLogos(nombreSerie: string, anio: number): Observable<any> {
-    const apiKey = '9acebb52c9e5a9a8ca10f58f1543d5d4';
-    const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${nombreSerie}&first_air_date_year=${anio}&include_image_language=en`;
     return this.http.get(url);
   }
 }

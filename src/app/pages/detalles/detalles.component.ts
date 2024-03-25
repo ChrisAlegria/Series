@@ -38,14 +38,6 @@ export class DetallesComponent implements OnInit {
               // Aquí puedes manejar los backdrops si es necesario
             }
           });
-          this.registroService.getLogos(nombreSerie, anio).subscribe((response: any) => {
-            if (response && response.results && response.results.length > 0) {
-              // Obtiene la URL de la imagen de la serie
-              this.logo = `https://image.tmdb.org/t/p/original${response.results[0].logos_path}`;
-              //https://image.tmdb.org/t/p/original/csy774JSTIoo4KUkrFWtU9SHA8j.png
-              // Aquí puedes manejar los backdrops si es necesario
-            }
-          });
         }
       });
     });

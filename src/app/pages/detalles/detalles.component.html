@@ -1,11 +1,9 @@
 <section class="cover-section section1" [style.background-image]="backdrop ? 'url(' + backdrop + ')' : ''">
   <div class="container col-12 col-lg-6 row textStyle">
-    <h1>{{ nombreSerie.toUpperCase() }}</h1>
-    <p *ngIf="detallesSerie && detallesSerie.length > 0">{{ detallesSerie[0].descripcion }}</p>
-    <img class="backdrop" *ngIf="logo" [src]="logo" alt="Logo de la serie">
+    <img [src]="logo" alt="Logo de la serie">
   </div>
 </section>  
 <section>
-  <img class="logo" *ngIf="logo" [src]="logo" alt="Logo de la serie">
-
+  <h1>{{ nombreSerie.toUpperCase() }}</h1>
+  <p *ngIf="detallesSerie && detallesSerie.length > 0">{{ detallesSerie[0].descripcion }}</p>
 </section>
