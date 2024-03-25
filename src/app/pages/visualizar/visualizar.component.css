@@ -102,17 +102,14 @@ label{
 }
 
 .separer{
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .card-title{
   margin-top: 12PX;
-}
-
-.card-title{
-font-size: 1.1rem;
-margin-bottom: 1px;
+  font-size: 1.1rem;
+  margin-bottom: 1px;
 }
 
 .additional-info {
@@ -124,6 +121,20 @@ margin-bottom: 1px;
   color: inherit; /* Heredar el color del texto */
 }
 
+.info{
+  width: 200px; 
+}
+
 .card-link:hover {
   text-decoration: none; /* Eliminar subrayado en hover */
+}
+
+.card-content{
+  margin-left: 10px;
+  margin-right: 0;
+  width: 200px; 
+}
+
+.end{
+  margin-right: 3px;
 }

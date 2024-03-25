@@ -29,7 +29,12 @@
               <span class="separer text-white">|</span> <!-- Separador -->
               <span class="ml-1 text-white">{{ registro.anio }}</span> <!-- Año de lanzamiento -->
               <span class="separer text-white">|</span> <!-- Separador -->
-              <span class="ml-1 text-white additional-info">{{ registro.genero }}</span> <!-- Género -->
+              <div class="genres">
+                <ng-container *ngFor="let genero of registro.genero.slice(0, 2); let last = last">
+                  <span class="ml-1 text-white additional-info">{{ genero }}</span>
+                  <span class="ml-1 text-white additional-info end" *ngIf="!last">,</span>
+                </ng-container>
+              </div>
             </div>
           </div>
         </a>
