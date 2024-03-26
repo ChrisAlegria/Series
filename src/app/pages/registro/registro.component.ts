@@ -30,11 +30,16 @@ export class RegistroComponent implements OnInit {
   calificacionCambiada: boolean = false;
   selectedStars: number = 0;
   ratingValues: { [key: number]: number } = {
-    1: 20,
-    2: 40,
-    3: 60,
-    4: 80,
-    5: 100
+    1: 10,
+    2: 20,
+    3: 30,
+    4: 40,
+    5: 50,
+    6: 60,
+    7: 70,
+    8: 80,
+    9: 90,
+    10: 100,
   };
   
 
@@ -351,11 +356,16 @@ export class RegistroComponent implements OnInit {
 
   calculateRatingValue(star: number): number {
     const ratingValues: { [key: number]: number } = {
-      1: 20,
-      2: 40,
-      3: 60,
-      4: 80,
-      5: 100
+      1: 10,
+      2: 20,
+      3: 30,
+      4: 40,
+      5: 50,
+      6: 60,
+      7: 70,
+      8: 80,
+      9: 90,
+      10: 100,
     };
     return ratingValues[star];
   }

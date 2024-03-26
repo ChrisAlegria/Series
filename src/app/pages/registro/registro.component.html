@@ -55,9 +55,9 @@
                 <input type="number" min="0" max="2024" placeholder="Ingresa el año de lanzamiento de tu serie" class="form-control" [(ngModel)]="registro.anio" (input)="onAnioChange()">
               </p>
               <p>
-                <label>Porcentaje de Calificación</label>
+                <label>Puntuacion de la Serie</label>
                 <div class="rating rating-container">
-                  <span class="star" [class.selected]="star <= selectedStars" *ngFor="let star of [1, 2, 3, 4, 5]"(click)="setSelectedStars(star)">&#9733;
+                  <span class="star" [class.selected]="star <= selectedStars" *ngFor="let star of [1, 2, 3, 4, 5,6,7,8,9,10]"(click)="setSelectedStars(star)">&#9733;
                   </span>
                 </div>
                 </div>
