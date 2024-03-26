@@ -32,7 +32,14 @@ export class RegistroComponent implements OnInit {
   anioCambiado: boolean = false;
   generoCambiado: boolean = false;
   calificacionCambiada: boolean = false;
-
+  selectedStars: number = 0;
+  ratingValues: { [key: number]: number } = {
+    1: 20,
+    2: 40,
+    3: 60,
+    4: 80,
+    5: 100
+  };
   
 
   constructor(private registroService: RegistroService, private agregarModificarEliminarService: AgregarModificarEliminarService) {}
@@ -58,13 +65,20 @@ export class RegistroComponent implements OnInit {
     if (confirmacion) {
       // Agregar los géneros seleccionados al registro antes de insertarlo
       this.registro.genero = this.selectedOptions;
-
+  
+      // Establecer el valor de la calificación utilizando el objeto ratingValues
+      this.registro.porcentajeCalificacion = this.ratingValues[this.selectedStars];
+  
+      // Llamar al servicio para crear el registro
       this.agregarModificarEliminarService.createRegistro(this.registro);
+      
+      // Reiniciar el registro
       this.registro = new Registro();
+  
       // Mostrar el mensaje después de insertar el registro
       this.selectedSerieId = "message";
     }
-  };
+  }
 
   updateRegistro() {
     const confirmacion = confirm('¿Estás seguro de que deseas actualizar esta serie?');
@@ -233,10 +247,10 @@ export class RegistroComponent implements OnInit {
   }
   
 
-checkButtonStatus() {
-  // Habilitar el botón si todos los campos obligatorios están llenos y al menos un género está seleccionado
-  this.mostrarBotonRojo = !(!this.registro.nombre || !this.registro.descripcion || !this.registro.anio || !this.generoSeleccionado || !this.registro.porcentajeCalificacion);
-}
+  checkButtonStatus() {
+    // Habilitar el botón si todos los campos obligatorios están llenos y al menos un género está seleccionado
+    this.mostrarBotonRojo = !(!this.registro.nombre || !this.registro.descripcion || !this.registro.anio || !this.generoSeleccionado || !this.selectedStars);
+  }
   
 
   updateMessage(): void {
@@ -272,30 +286,76 @@ checkButtonStatus() {
   }
   
 
-    // Métodos para rastrear los cambios en cada campo del formulario
-    onNombreChange(): void {
-      this.nombreCambiado = true;
-    }
-  
-    onDescripcionChange(): void {
-      this.descripcionCambiada = true;
-    }
-  
-    onAnioChange(): void {
-      this.anioCambiado = true;
-    }
-  
-    onGeneroChange(): void {
-      this.generoCambiado = true;
-    }
-  
-    onCalificacionChange(): void {
-      this.calificacionCambiada = true;
-    }
-
-    isGenreSelected(genre: string): boolean {
-      return this.selectedOptions.includes(genre);
-    }
-    
+  // Métodos para rastrear los cambios en cada campo del formulario
+  onNombreChange(): void {
+    this.nombreCambiado = true;
   }
+
+  onDescripcionChange(): void {
+    this.descripcionCambiada = true;
+  }
+
+  onAnioChange(): void {
+    this.anioCambiado = true;
+  }
+
+  onGeneroChange(): void {
+    this.generoCambiado = true;
+  }
+
+  onCalificacionChange(): void {
+    this.calificacionCambiada = true;
+    this.calificacionCambiada = true;
+  }
+
+  isGenreSelected(genre: string): boolean {
+    return this.selectedOptions.includes(genre);
+  }
+  
+
+  highlightStars(star: number): void {
+    if (!this.selectedStars) {
+      this.selectedStars = star;
+    }
+  }
+  
+  resetStars(): void {
+    this.selectedStars = 0;
+  }
+  
+  setSelectedStars(star: number): void {
+    if (this.selectedStars === star) {
+      // Si la estrella ya está seleccionada, deselecciónala
+      this.selectedStars = 0;
+      this.registro.porcentajeCalificacion = 0; // Reinicia el valor de calificación
+    } else {
+      // De lo contrario, selecciona la estrella clicada
+      this.selectedStars = star;
+      // Calcula el valor de calificación en función del número de estrellas
+      this.registro.porcentajeCalificacion = this.calculateRatingValue(star);
+      // Aquí puedes guardar el valor de calificación en tu modelo de datos (registro.porcentajeCalificacion)
+    }
+  }
+
+  calculateRatingValue(star: number): number {
+    const ratingValues: { [key: number]: number } = {
+      1: 20,
+      2: 40,
+      3: 60,
+      4: 80,
+      5: 100
+    };
+    return ratingValues[star];
+  }
+  
+  
+
+  onStarClick(starNumber: number) {
+    // Establecer el número de estrellas seleccionadas
+    this.selectedStars = starNumber;
+    
+    // Verificar si hay al menos una estrella seleccionada para habilitar el botón rojo
+    this.checkButtonStatus();
+  }
+}
 

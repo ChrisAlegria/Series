@@ -94,7 +94,9 @@ label{
 
 .red{
   margin-top: 90px;
+  margin-bottom: 10px;
   border: 2px, solid #dd1419;
+  border-color: #dd1419;
   box-shadow: 0 0 40px 40px #dd1419 inset, 0 0 0 0 #dd1419;
   &:hover{
     box-shadow: 0 0 10px 0 #dd1419 inset, 0 0 10px 4px #dd1419;
@@ -215,3 +217,30 @@ label{
 .select-dropdown option.default-option {
   color: #6c757d; /* Color de texto gris */
 }
+
+/* Estilo para las estrellas */
+.rating {
+  display: inline-flex; /* Muestra los elementos en una fila */
+}
+
+.star {
+  font-size: 24px; /* Tamaño de la estrella */
+  cursor: pointer; /* Cambia el cursor al pasar sobre las estrellas */
+  margin-right: 5px; /* Espacio entre las estrellas */
+}
+
+.star.selected {
+  color: gold; /* Color de las estrellas seleccionadas */
+}
+
+/* Estilo para el contenedor de las estrellas */
+.rating-container {
+  display: inline-flex; /* Muestra el contenedor en una fila */
+}
+
+.btn.red.disabled-button {
+  border: none;
+  outline: none; /* Elimina cualquier contorno */
+}
+
+
