@@ -23,10 +23,6 @@ export class RegistroComponent implements OnInit {
   opcionSeleccionada: boolean = false; // Variable para controlar si se ha seleccionado una opción
   selectedOptions: string[] = []; // Mantenemos un registro de las opciones seleccionadas
   generoSeleccionado: boolean = false; // Variable para controlar si se ha seleccionado un género
-  nombreIngresado: boolean = false;
-  descripcionIngresada: boolean = false;
-  anioIngresado: boolean = false;
-  calificacionIngresada: boolean = false;
   nombreCambiado: boolean = false;
   descripcionCambiada: boolean = false;
   anioCambiado: boolean = false;
@@ -86,6 +82,12 @@ export class RegistroComponent implements OnInit {
       // Agregar los géneros seleccionados al registro antes de actualizarlo
       this.registro.genero = this.selectedOptions;
   
+      // Verificar si hay estrellas seleccionadas
+      if (this.selectedStars === 0) {
+        alert('Debes seleccionar al menos una estrella antes de actualizar la serie.');
+        return; // Salir de la función si no hay estrellas seleccionadas
+      }
+  
       // Llamar al servicio para actualizar el registro
       this.agregarModificarEliminarService.updateRegistro(this.registro);
   
@@ -102,6 +104,7 @@ export class RegistroComponent implements OnInit {
   
       // Reiniciar el mensaje y las opciones seleccionadas
       this.resetMessageAndSelect();
+      this.resetStars();
   
       // Reiniciar el color de las opciones del desplegable a negro
       const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
@@ -112,10 +115,12 @@ export class RegistroComponent implements OnInit {
       }
     }
   }
+  
 
   cancelarEdicion() {
     const confirmacion = confirm('¿Estás seguro de que deseas cancelar la edición?');
     if (confirmacion) {
+
       // Reiniciar el registro
       this.registro = new Registro();
       // Reiniciar el ID seleccionado
@@ -127,7 +132,8 @@ export class RegistroComponent implements OnInit {
   
       // Reiniciar el mensaje y las opciones seleccionadas
       this.resetMessageAndSelect();
-  
+      this.resetStars();
+
       // Reiniciar el color de las opciones del desplegable a negro
       const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
       if (selectElement) {
@@ -158,6 +164,7 @@ export class RegistroComponent implements OnInit {
   
       // Reiniciar el mensaje y las opciones seleccionadas
       this.resetMessageAndSelect();
+      this.resetStars();
   
       // Reiniciar el color de las opciones del desplegable a negro
       const selectElement = document.getElementById('tuSelectId') as HTMLSelectElement;
@@ -191,8 +198,14 @@ export class RegistroComponent implements OnInit {
         // Actualizar el mensaje con todas las opciones seleccionadas
         this.updateMessage();
   
-        // Desactivar el botón verde al seleccionar una serie
-        this.mostrarBotonVerde = false;
+        // Reiniciar las estrellas seleccionadas
+        this.resetStars();
+  
+        // Verificar el valor de la calificación para colorear las estrellas
+        if (serieSeleccionada.porcentajeCalificacion) {
+          const starsSelected = serieSeleccionada.porcentajeCalificacion / 20;
+          this.setSelectedStars(starsSelected);
+        }
   
         // Reiniciar las variables de control de cambios
         this.nombreCambiado = false;
@@ -209,6 +222,7 @@ export class RegistroComponent implements OnInit {
       this.mostrarBotonVerde = false; // Desactivar el botón azul al seleccionar un mensaje de "Modificar una serie"
     }
   }
+  
 
   updateSelectedGenre(event: any): void {
     const selectElement = event.target as HTMLSelectElement;
@@ -325,16 +339,14 @@ export class RegistroComponent implements OnInit {
   
   setSelectedStars(star: number): void {
     if (this.selectedStars === star) {
-      // Si la estrella ya está seleccionada, deselecciónala
       this.selectedStars = 0;
-      this.registro.porcentajeCalificacion = 0; // Reinicia el valor de calificación
+      this.registro.porcentajeCalificacion = 0;
     } else {
-      // De lo contrario, selecciona la estrella clicada
       this.selectedStars = star;
-      // Calcula el valor de calificación en función del número de estrellas
       this.registro.porcentajeCalificacion = this.calculateRatingValue(star);
-      // Aquí puedes guardar el valor de calificación en tu modelo de datos (registro.porcentajeCalificacion)
+      this.calificacionCambiada = true; // Establecer calificacionCambiada en true cuando se selecciona una estrella
     }
+    this.checkButtonStatus(); // Verificar el estado del botón después de seleccionar una estrella
   }
 
   calculateRatingValue(star: number): number {
@@ -347,8 +359,6 @@ export class RegistroComponent implements OnInit {
     };
     return ratingValues[star];
   }
-  
-  
 
   onStarClick(starNumber: number) {
     // Establecer el número de estrellas seleccionadas
