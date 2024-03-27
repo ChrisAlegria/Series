@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RegistroService } from '../../services/registro.service';
 import { Registro } from '../../models/registro';
 import { AgregarModificarEliminarService } from '../../services/agregarModificar-eliminar.service';
+import { Genero } from '../../models/generos';
+
 
 @Component({
   selector: 'app-registro',
@@ -12,6 +14,7 @@ export class RegistroComponent implements OnInit {
 
   registros: Registro[] = [];
   registro = new Registro();
+  genero = new Genero();
   generos: string[] = [];
   selectedSerie: string = '';
   showUpdateButton: boolean = false;
@@ -19,6 +22,7 @@ export class RegistroComponent implements OnInit {
   hideDeleteButton: boolean = false;
   mostrarBotonRojo: boolean = false;
   mostrarBotonVerde: boolean = false;
+  generoActual: string = '';
   mensaje: string = 'Selecciona un genero para la serie'; // Mensaje para mostrar en el desplegable
   opcionSeleccionada: boolean = false; // Variable para controlar si se ha seleccionado una opción
   selectedOptions: string[] = []; // Mantenemos un registro de las opciones seleccionadas
@@ -121,7 +125,6 @@ export class RegistroComponent implements OnInit {
     }
   }
   
-
   cancelarEdicion() {
     const confirmacion = confirm('¿Estás seguro de que deseas cancelar la edición?');
     if (confirmacion) {
@@ -181,7 +184,7 @@ export class RegistroComponent implements OnInit {
     }
   }
 
-  selectSerie() {
+ selectSerie() {
     if (this.selectedSerieId !== "message") {
       this.showUpdateButton = true;
       const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
@@ -208,7 +211,7 @@ export class RegistroComponent implements OnInit {
   
         // Verificar el valor de la calificación para colorear las estrellas
         if (serieSeleccionada.porcentajeCalificacion) {
-          const starsSelected = serieSeleccionada.porcentajeCalificacion / 20;
+          const starsSelected = serieSeleccionada.porcentajeCalificacion / 10; // Convertir la calificación a estrellas
           this.setSelectedStars(starsSelected);
         }
   
@@ -226,7 +229,7 @@ export class RegistroComponent implements OnInit {
       this.mostrarBotonRojo = true;
       this.mostrarBotonVerde = false; // Desactivar el botón azul al seleccionar un mensaje de "Modificar una serie"
     }
-  }
+}
   
 
   updateSelectedGenre(event: any): void {
@@ -352,7 +355,7 @@ export class RegistroComponent implements OnInit {
       this.calificacionCambiada = true; // Establecer calificacionCambiada en true cuando se selecciona una estrella
     }
     this.checkButtonStatus(); // Verificar el estado del botón después de seleccionar una estrella
-  }
+}
 
   calculateRatingValue(star: number): number {
     const ratingValues: { [key: number]: number } = {
@@ -378,4 +381,3 @@ export class RegistroComponent implements OnInit {
     this.checkButtonStatus();
   }
 }
-

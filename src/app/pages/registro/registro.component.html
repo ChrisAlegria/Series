@@ -7,61 +7,55 @@
 
 <section>
   <div class="container my-5 borderStyle1">
-      <div class="row">
-          <div class="col-12 col-lg-6">
-              <div class="textStyle">
-                  <h1>Ingresa Aquí la Información de tu Serie</h1>
-                  <p class="fontSize">En este apartado podrás agregar tus series favoritas y registrarlas en una base de datos, donde se almacenará el nombre de tu serie, su foto de portada, sus temporadas que le agregues y mucho más.</p>
-                  <button *ngIf="!showUpdateButton" type="button" class="btn red"  (click)="insertarRegistro();   resetMessageAndSelect()" [disabled]="!registro.nombre || !registro.descripcion || !registro.anio || !generoSeleccionado || !selectedStars" [ngClass]="{'active': selectedStars}">Insertar el registro de la serie a la BD</button>
-                  <button *ngIf="showUpdateButton && !mostrarBotonVerde" 
-        type="button" 
-        class="btn blue" 
-        (click)="updateRegistro();" 
-        [disabled]="!(nombreCambiado || descripcionCambiada || generoSeleccionado || anioCambiado || calificacionCambiada || !selectedStars)">
-  Actualizar Información
-</button>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+          <div class="textStyle">
+              <h1>Ingresa Aquí la Información de tu Serie</h1>
+              <p class="fontSize">En este apartado podrás agregar tus series favoritas y registrarlas en una base de datos, donde se almacenará el nombre de tu serie, su foto de portada, sus temporadas que le agregues y mucho más.</p>
+              <button *ngIf="!showUpdateButton" type="button" class="btn red"  (click)="insertarRegistro();   resetMessageAndSelect()" [disabled]="!registro.nombre || !registro.descripcion || !registro.anio || !generoSeleccionado || !selectedStars" [ngClass]="{'active': selectedStars}">Insertar el registro de la serie a la BD</button>
+              <button *ngIf="showUpdateButton && !mostrarBotonVerde" type="button" class="btn blue" (click)="updateRegistro();" [disabled]="!(nombreCambiado || descripcionCambiada || generoSeleccionado || anioCambiado || calificacionCambiada || !selectedStars)">Actualizar Información</button>
               <button *ngIf="selectedSerieId && showUpdateButton" type="button" class="btn purple" (click)="deleteRegistro(selectedSerieId);">Eliminar Serie</button>
-                  <button *ngIf="selectedSerieId && showUpdateButton && !mostrarBotonVerde" type="button" class="btn green" (click)="cancelarEdicion();">Cancelar la edición</button>
-                  
-                <div class="select-container">
-                    <select *ngIf="!showUpdateButton" class="form-control select-dropdown" [(ngModel)]="selectedSerieId" (change)="selectSerie()">
-                      <option value="message" disabled>Modificar una serie</option>
-                      <option *ngFor="let serie of registros" [value]="serie.id">{{ serie.nombre }}</option>
-                    </select>
-                  </div>
+              <button *ngIf="selectedSerieId && showUpdateButton && !mostrarBotonVerde" type="button" class="btn green" (click)="cancelarEdicion();">Cancelar la edición</button>
+              
+            <div class="select-container">
+              <select *ngIf="!showUpdateButton" class="form-control select-dropdown" [(ngModel)]="selectedSerieId" (change)="selectSerie()">
+                <option value="message" disabled>Modificar una serie</option>
+                <option *ngFor="let serie of registros" [value]="serie.id">{{ serie.nombre }}</option>
+              </select>
             </div>
           </div>
+        </div>
 
-          <div class="container row col-12 borderStyle2 col-12 col-lg-6 inputStyle">
-            <br>
-            <div class="col-sm-12">
-              <p><br>
-                <label class="iniLab">Nombre de la Serie</label>
-                <input type="text" placeholder="Ingresa el nombre de tu serie" class="form-control" [(ngModel)]="registro.nombre" (input)="onNombreChange()">
-              </p>
-              <p>
-                <label>Descripcion de la Serie</label>
-                <input type="text" placeholder="Ingresa una descripción de tu serie" class="form-control" [(ngModel)]="registro.descripcion" (input)="onDescripcionChange()">
-              </p>
-              <p>
+        <div class="container row col-12 borderStyle2 col-12 col-lg-6 inputStyle">
+          <br>
+          <div class="col-sm-12">
+            <p><br>
+              <label class="iniLab">Nombre de la Serie</label>
+              <input type="text" placeholder="Ingresa el nombre de tu serie" class="form-control" [(ngModel)]="registro.nombre" (input)="onNombreChange()">
+            </p>
+            <p>
+              <label>Descripcion de la Serie</label>
+              <input type="text" placeholder="Ingresa una descripción de tu serie" class="form-control" [(ngModel)]="registro.descripcion" (input)="onDescripcionChange()">
+            </p>
+            <p>
                 <label>Género de la Serie</label>
                 <select class="form-control" (change)="updateSelectedGenre($event)">
                   <option value="null" disabled [selected]="true">{{ mensaje }}</option>
                   <option *ngFor="let genre of generos" [value]="genre" [style.color]="isGenreSelected(genre) ? 'red' : 'black'">{{ genre }}</option>
                 </select>
-              </p>
-              <p>
-                <label>Año de Publicación de la Serie</label>
-                <input type="number" min="0" max="2024" placeholder="Ingresa el año de lanzamiento de tu serie" class="form-control" [(ngModel)]="registro.anio" (input)="onAnioChange()">
-              </p>
-              <p>
-                <label>Puntuacion de la Serie</label>
-                <div class="rating rating-container">
-                  <span class="star" [class.selected]="star <= selectedStars" *ngFor="let star of [1, 2, 3, 4, 5,6,7,8,9,10]"(click)="setSelectedStars(star)">&#9733;
-                  </span>
-                </div>
-                </div>
+            <p>
+              <label>Año de Publicación de la Serie</label>
+              <input type="number" min="0" max="2024" placeholder="Ingresa el año de lanzamiento de tu serie" class="form-control" [(ngModel)]="registro.anio" (input)="onAnioChange()">
+            </p>
+            <p>
+              <div>
+              <label class="label">Puntuacion de la Serie</label><br>
+              <div class="rating rating-container">
+                <span class="rating rating-container rating rating-container star" [class.selected]="star <= selectedStars" *ngFor="let star of [1, 2, 3, 4, 5,6,7,8,9,10]"(click)="setSelectedStars(star)">&#9733;</span>
+              </div>
             </div>
-          </div>
-      </div>
+            </div>
+        </div>
+    </div>
+  </div>
 </section>

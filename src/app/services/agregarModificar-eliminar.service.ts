@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Registro } from '../models/registro';
+import { Genero } from '../models/generos';
+
 
 
 @Injectable({
@@ -30,5 +32,7 @@ export class AgregarModificarEliminarService {
     this.firestore.doc('registros/' + registroId).delete();
   }
 }
+
+
 
 

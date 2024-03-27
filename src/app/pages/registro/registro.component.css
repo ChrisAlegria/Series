@@ -144,10 +144,8 @@ label{
   width: 100%; /* Ajusta el ancho según sea necesario */
   text-align: center; /* Centra el texto en el desplegable */
   margin: 0 auto; /* Centra el desplegable horizontalmente */
-}
-
-.form-control  option {
-  text-align: center; /* Centra el texto de las opciones */
+  display: flex; /* Utiliza flexbox para colocar los elementos en una fila */
+  align-items: center; /* Centra verticalmente los elementos en el contenedor */
 }
 
 .cover-section {
@@ -238,9 +236,10 @@ label{
   display: inline-flex; /* Muestra el contenedor en una fila */
 }
 
-.btn.red.disabled-button {
-  border: none;
-  outline: none; /* Elimina cualquier contorno */
+.label{
+  font-style: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  font-weight: 700;
+  color: rgb(201, 201, 201);
 }
-
-
