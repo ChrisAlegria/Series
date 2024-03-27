@@ -125,6 +125,7 @@ export class RegistroComponent implements OnInit {
     }
   }
   
+
   cancelarEdicion() {
     const confirmacion = confirm('¿Estás seguro de que deseas cancelar la edición?');
     if (confirmacion) {
@@ -184,7 +185,7 @@ export class RegistroComponent implements OnInit {
     }
   }
 
- selectSerie() {
+  selectSerie() {
     if (this.selectedSerieId !== "message") {
       this.showUpdateButton = true;
       const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
@@ -211,7 +212,7 @@ export class RegistroComponent implements OnInit {
   
         // Verificar el valor de la calificación para colorear las estrellas
         if (serieSeleccionada.porcentajeCalificacion) {
-          const starsSelected = serieSeleccionada.porcentajeCalificacion / 10; // Convertir la calificación a estrellas
+          const starsSelected = serieSeleccionada.porcentajeCalificacion / 20;
           this.setSelectedStars(starsSelected);
         }
   
@@ -229,7 +230,7 @@ export class RegistroComponent implements OnInit {
       this.mostrarBotonRojo = true;
       this.mostrarBotonVerde = false; // Desactivar el botón azul al seleccionar un mensaje de "Modificar una serie"
     }
-}
+  }
   
 
   updateSelectedGenre(event: any): void {
@@ -355,7 +356,7 @@ export class RegistroComponent implements OnInit {
       this.calificacionCambiada = true; // Establecer calificacionCambiada en true cuando se selecciona una estrella
     }
     this.checkButtonStatus(); // Verificar el estado del botón después de seleccionar una estrella
-}
+  }
 
   calculateRatingValue(star: number): number {
     const ratingValues: { [key: number]: number } = {
@@ -379,5 +380,13 @@ export class RegistroComponent implements OnInit {
     
     // Verificar si hay al menos una estrella seleccionada para habilitar el botón rojo
     this.checkButtonStatus();
+  }
+
+  // Función para agregar un género a Firebase
+  agregarGenero() {
+    const nuevoGenero = prompt('Ingresa el nombre del nuevo género:');
+    if (nuevoGenero) {
+      this.agregarModificarEliminarService.guardarGeneroEnFirebase(nuevoGenero);
+    }
   }
 }

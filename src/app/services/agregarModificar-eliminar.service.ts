@@ -31,6 +31,18 @@ export class AgregarModificarEliminarService {
   deleteRegistro(registroId: string) {
     this.firestore.doc('registros/' + registroId).delete();
   }
+
+  guardarGeneroEnFirebase(nuevoGenero: string) {
+    // Aquí debes escribir el código para guardar el nuevo género en Firebase
+    // Por ejemplo:
+    this.firestore.collection('generos').add({ genero: nuevoGenero })
+      .then(() => {
+        console.log('Nuevo género agregado correctamente a Firebase.');
+      })
+      .catch(error => {
+        console.error('Error al agregar el nuevo género:', error);
+      });
+  }
 }
 
 

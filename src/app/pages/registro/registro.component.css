@@ -131,6 +131,18 @@ label{
   }
 }
 
+.generos{
+  font-size: 50%;
+  margin-top: 0 px;
+  border-color: #04a37b;
+  width: 200px;
+  height: 30px; 
+  box-shadow: 0 0 40px 40px #04a37b inset, 0 0 0 0 #04a37b;
+  &:hover{
+    box-shadow: 0 0 10px 0 #04a37b inset, 0 0 10px 4px #04a37b;
+  }
+}
+
 .select-dropdown {
   text-align: center;
 }
@@ -229,10 +241,6 @@ label{
 
 .star.selected {
   color: gold; /* Color de las estrellas seleccionadas */
-}
-
-.star:hover, .star.highlighted {
-  color: gold; /* Cambia el color de la estrella a dorado al pasar el cursor */
 }
 
 /* Estilo para el contenedor de las estrellas */
