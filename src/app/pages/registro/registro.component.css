@@ -231,6 +231,10 @@ label{
   color: gold; /* Color de las estrellas seleccionadas */
 }
 
+.star:hover, .star.highlighted {
+  color: gold; /* Cambia el color de la estrella a dorado al pasar el cursor */
+}
+
 /* Estilo para el contenedor de las estrellas */
 .rating-container {
   display: inline-flex; /* Muestra el contenedor en una fila */
