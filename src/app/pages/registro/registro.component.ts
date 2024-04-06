@@ -212,7 +212,7 @@ export class RegistroComponent implements OnInit {
   
         // Verificar el valor de la calificación para colorear las estrellas
         if (serieSeleccionada.porcentajeCalificacion) {
-          const starsSelected = serieSeleccionada.porcentajeCalificacion / 20;
+          const starsSelected = serieSeleccionada.porcentajeCalificacion / 10;
           this.setSelectedStars(starsSelected);
         }
   

@@ -46,11 +46,11 @@
                 <button type="button" class="btn generos" (click)="agregarGenero()">Agregar Genero</button>
 
               <select class="select-generos" (change)="eliminarGenero($event)">
-  <option>Elimina un género</option>
-  <option *ngFor="let genero of generos" [value]="genero">
-    {{ genero }}
-  </option>
-</select>
+                <option>Elimina un género</option>
+                <option *ngFor="let genero of generos" [value]="genero">
+                  {{ genero }}
+                </option>
+              </select>
                 
                 <p>
               <label>Año de Publicación de la Serie</label>
