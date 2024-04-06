@@ -290,3 +290,12 @@ label{
 .select-generos option.default-option {
   color: #6c757d; /* Color de texto gris */
 }
+
+.part{
+  margin-top: 40px;
+}
+
+.custom-select {
+  width: 400px; /* Define el ancho deseado */
+  /* Agrega cualquier otro estilo personalizado que desees */
+}

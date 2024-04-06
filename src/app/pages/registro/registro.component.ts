@@ -199,8 +199,6 @@ export class RegistroComponent implements OnInit {
           // Si hay solo un género, actualiza el mensaje con ese género
           this.mensaje = generosSeleccionados;
         }
-        
-        // Asignar la serie seleccionada al registro actual
         this.registro = serieSeleccionada;
   
         // Actualizar automáticamente los géneros seleccionados
@@ -212,13 +210,10 @@ export class RegistroComponent implements OnInit {
         // Reiniciar las estrellas seleccionadas
         this.resetStars();
   
-        // Verificar si hay calificación para colorear las estrellas
+        // Verificar el valor de la calificación para colorear las estrellas
         if (serieSeleccionada.porcentajeCalificacion) {
           const starsSelected = serieSeleccionada.porcentajeCalificacion / 10;
           this.setSelectedStars(starsSelected);
-        } else {
-          // Si no hay calificación, deseleccionar todas las estrellas
-          this.setSelectedStars(0);
         }
   
         // Reiniciar las variables de control de cambios
@@ -230,14 +225,12 @@ export class RegistroComponent implements OnInit {
       }
       this.mostrarBotonRojo = false;
     } else {
-      // Si no se selecciona ninguna serie ("message")
       this.showUpdateButton = false;
-      this.registro = new Registro(); // Reiniciar el registro
-      this.mostrarBotonRojo = true; // Mostrar el botón rojo
-      this.mostrarBotonVerde = false; // Ocultar el botón verde
+      this.registro = new Registro();
+      this.mostrarBotonRojo = true;
+      this.mostrarBotonVerde = false; // Desactivar el botón azul al seleccionar un mensaje de "Modificar una serie"
     }
   }
-  
   
 
   updateSelectedGenre(event: any): void {

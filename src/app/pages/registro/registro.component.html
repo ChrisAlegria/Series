@@ -38,30 +38,28 @@
               <input type="text" placeholder="Ingresa una descripción de tu serie" class="form-control" [(ngModel)]="registro.descripcion" (input)="onDescripcionChange()">
             </p>
             <p>
-                <label>Género de la Serie</label>
-                <select class="form-control" (change)="updateSelectedGenre($event)">
+              <div>
+                <label class="label">Género de la Serie</label>
+                <select class="form-control custom-select" (change)="updateSelectedGenre($event)">
                   <option value="null" disabled [selected]="true">{{ mensaje }}</option>
                   <option *ngFor="let genre of generos" [value]="genre" [style.color]="isGenreSelected(genre) ? 'red' : 'black'">{{ genre }}</option>
                 </select>
-                <button type="button" class="btn generos" (click)="agregarGenero()">Agregar Genero</button>
-
-              <select class="select-generos" (change)="eliminarGenero($event)">
-                <option>Elimina un género</option>
-                <option *ngFor="let genero of generos" [value]="genero">
-                  {{ genero }}
-                </option>
-              </select>
                 
-                <p>
-              <label>Año de Publicación de la Serie</label>
+                  <button type="button" class="btn generos" (click)="agregarGenero()">Agregar Género</button>
+                  <select class="select-generos" (change)="eliminarGenero($event)">
+                    <option>Elimina un género</option>
+                    <option *ngFor="let genero of generos" [value]="genero">{{ genero }}</option>
+                  </select>
+                </div>
+            <p>
+              <label class="part">Año de Publicación de la Serie</label>
               <input type="number" min="0" max="2024" placeholder="Ingresa el año de lanzamiento de tu serie" class="form-control" [(ngModel)]="registro.anio" (input)="onAnioChange()">
             </p>
             <p>
               <div>
               <label class="label">Puntuacion de la Serie</label><br>
-              <div class="rating">
-                <span class="star" *ngFor="let star of [1, 2, 3, 4, 5,6,7,8,9,10]" [ngClass]="{ 'selected': star <= selectedStars }" (click)="setSelectedStars(star)">&#9733;
-                </span>
+              <div class="rating rating-container">
+                <span class="rating rating-container rating rating-container star" [class.selected]="star <= selectedStars" *ngFor="let star of [1, 2, 3, 4, 5,6,7,8,9,10]"(click)="setSelectedStars(star)">&#9733;</span>
               </div>
             </div>
           </div>
