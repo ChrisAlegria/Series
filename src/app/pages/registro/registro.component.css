@@ -255,3 +255,38 @@ label{
   font-weight: 700;
   color: rgb(201, 201, 201);
 }
+
+.select-generos {
+  /* Estilos generales */
+  width: 200px;
+  height: 30px;
+  font-size: 50%; /* Reduce el tamaño del texto */
+  text-align: center;
+  font-weight: 700;
+  color: white;
+  border-radius: 1em; /* Reduce el redondeo de los bordes */
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.5em 2em; /* Ajusta el espaciado interno */
+  text-transform: uppercase;
+  transition: all 150ms ease-in-out;
+  margin-top: 10px;
+  border: 2px solid #04a37b;
+  box-shadow: 0 0 20px 20px #04a37b inset, 0 0 0 0 #04a37b;
+}
+
+.select-generos:hover {
+  box-shadow: 0 0 5px 0 #04a37b inset, 0 0 5px 2px #04a37b;
+}
+
+/* Estilo para el texto dentro del select */
+.select-generos option {
+  background-color: #000; /* Color de fondo negro */
+  color: #fff; /* Color del texto blanco */
+}
+
+/* Estilo para el texto de la opción por defecto (placeholder) */
+.select-generos option.default-option {
+  color: #6c757d; /* Color de texto gris */
+}

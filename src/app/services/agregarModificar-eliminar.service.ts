@@ -43,6 +43,15 @@ export class AgregarModificarEliminarService {
         console.error('Error al agregar el nuevo género:', error);
       });
   }
+
+  // Método para eliminar un género por su ID
+  eliminarGenero(genero: string) {
+    this.firestore.collection('generos', ref => ref.where('genero', '==', genero)).get().subscribe(snapshot => {
+      snapshot.forEach(doc => {
+        doc.ref.delete(); // Elimina el documento correspondiente al género
+      });
+    });
+  }
 }
 
 

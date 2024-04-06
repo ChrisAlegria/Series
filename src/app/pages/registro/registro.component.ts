@@ -389,4 +389,23 @@ export class RegistroComponent implements OnInit {
       this.agregarModificarEliminarService.guardarGeneroEnFirebase(nuevoGenero);
     }
   }
+
+  eliminarGenero(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const generoSeleccionado = selectElement.value;
+    
+    if (generoSeleccionado) {
+      const confirmacion = confirm(`¿Estás seguro de que deseas eliminar el género "${generoSeleccionado}"?`);
+      if (confirmacion) {
+        // Eliminar el género del arreglo local
+        const index = this.generos.indexOf(generoSeleccionado);
+        if (index !== -1) {
+          this.generos.splice(index, 1);
+        }
+        
+        // Llamar al servicio para eliminar el género de la base de datos
+        this.agregarModificarEliminarService.eliminarGenero(generoSeleccionado);
+      }
+    }
+  }
 }

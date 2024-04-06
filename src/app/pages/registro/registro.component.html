@@ -44,6 +44,14 @@
                   <option *ngFor="let genre of generos" [value]="genre" [style.color]="isGenreSelected(genre) ? 'red' : 'black'">{{ genre }}</option>
                 </select>
                 <button type="button" class="btn generos" (click)="agregarGenero()">Agregar Genero</button>
+
+              <select class="select-generos" (change)="eliminarGenero($event)">
+  <option>Elimina un género</option>
+  <option *ngFor="let genero of generos" [value]="genero">
+    {{ genero }}
+  </option>
+</select>
+                
                 <p>
               <label>Año de Publicación de la Serie</label>
               <input type="number" min="0" max="2024" placeholder="Ingresa el año de lanzamiento de tu serie" class="form-control" [(ngModel)]="registro.anio" (input)="onAnioChange()">
