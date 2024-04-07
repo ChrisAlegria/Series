@@ -93,7 +93,7 @@ label{
 }
 
 .red{
-  margin-top: 90px;
+  margin-top: 75px;
   border: 2px, solid #dd1419;
   border-color: #dd1419;
   box-shadow: 0 0 40px 40px #dd1419 inset, 0 0 0 0 #dd1419;
@@ -103,7 +103,7 @@ label{
 }
 
 .blue{
-  margin-top: 90px;
+  margin-top: 75px;
   margin-bottom: 10px;
   border: 2px, solid #1464dd;
   border-color: #1464dd;
