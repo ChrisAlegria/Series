@@ -14,6 +14,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { VisualizarComponent } from './pages/visualizar/visualizar.component';
 import { DetallesComponent } from './pages/detalles/detalles.component';
 import { FooterComponent } from './pages/footer/footer.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FooterComponent } from './pages/footer/footer.component';
     VisualizarComponent,
     DetallesComponent,
     FooterComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

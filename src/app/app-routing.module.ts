@@ -4,6 +4,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { VisualizarComponent } from './pages/visualizar/visualizar.component';
 import { DetallesComponent } from './pages/detalles/detalles.component';
+import { AboutComponent } from './pages/about/about.component';
+
 
 
 const routes: Routes = [
@@ -20,7 +22,13 @@ const routes: Routes = [
     component: VisualizarComponent,
   },
   {
-    path: 'detalles/:nombre', component: DetallesComponent 
+    path: 'detalles/:nombre', 
+    component: DetallesComponent 
+  },
+  { 
+    path:'about',
+    component: AboutComponent,
+
   },
   {
     path:'**',
