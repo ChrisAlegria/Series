@@ -10,25 +10,18 @@
 
 <div class="containerCard">
   <div class="row">
-    <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let registro of registros">
-      <!-- Envuelve toda la tarjeta dentro del enlace -->
-        <div class="info">
-          <a [routerLink]="['/detalles', registro.nombre]" class="card-link">
-
-          <!-- Imagen de la serie -->
+    <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom: 60px;" *ngFor="let registro of registros">
+      <div class="info">
+        <a [routerLink]="['/detalles', registro.nombre]" class="card-link">
           <img [src]="registro.imagenSerie ? registro.imagenSerie : imagenPorDefecto" class="card-img-top" alt="...">
-
-          <!-- Contenido de la tarjeta -->
           <div class="card-content">
-            <!-- Título de la serie -->
-            <h5 class="card-title text-white">{{ registro.nombre }}</h5>
-
-            <!-- Información adicional -->
+            <!-- Título de la serie con primera letra de cada palabra capitalizada -->
+            <h5 class="card-title text-white">{{ capitalizeWords(registro.nombre) }}</h5>
             <div class="mt-2 additional-info d-flex align-items-center">
-              <span class="mr-1 text-white">⭐ {{ registro.porcentajeCalificacion }}%</span> <!-- Estrella y porcentaje -->
-              <span class="separer text-white">|</span> <!-- Separador -->
-              <span class="ml-1 text-white">{{ registro.anio }}</span> <!-- Año de lanzamiento -->
-              <span class="separer text-white">|</span> <!-- Separador -->
+              <span class="mr-1 text-white">⭐ {{ registro.porcentajeCalificacion }}%</span>
+              <span class="separer text-white">|</span>
+              <span class="ml-1 text-white">{{ registro.anio }}</span>
+              <span class="separer text-white">|</span>
               <div class="genres">
                 <ng-container *ngFor="let genero of registro.genero.slice(0, 2); let last = last">
                   <span class="ml-1 text-white additional-info">{{ genero }}</span>

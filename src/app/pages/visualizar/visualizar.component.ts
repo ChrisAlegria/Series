@@ -34,4 +34,9 @@ export class VisualizarComponent implements OnInit {
       });
     });
   }
+
+  // Función para capitalizar la primera letra de cada palabra en una cadena
+  capitalizeWords(text: string): string {
+    return text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+  }
 }
