@@ -1,5 +1,26 @@
-/* Estilos personalizados para el footer */
+  /* Reducir el tamaño de fuente para todos los párrafos (<p>) */
+p {
+    font-size: 0.8rem; /* Equivalente a 14px */
+    margin-bottom: 2px;
+  }
+  
+  /* Reducir el tamaño de fuente para los encabezados (<h1>, <h2>, etc.) */
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 1rem; /* Tamaño de fuente más pequeño para encabezados */
+  }
+  
+  /* Opcional: aplicar estilos a los enlaces */
+  .eception {
+    font-size: 0.8rem; /* Equivalente a 14px */
+  }
+
+  /* Estilos personalizados para el footer */
 .footer {
-    background-color: #0e0e0e; /* Color de fondo negro */
+    background-color: #090909; /* Color de fondo negro */
     color: #fff; /* Color de texto blanco */
   }
+
+  .tp{
+    margin-top: 2.4px;
+  }
+  
