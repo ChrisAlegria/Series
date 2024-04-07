@@ -66,3 +66,9 @@ label{
     text-align: center; /* Centra horizontalmente el texto */
     padding-top: 50px; /* Espacio superior para centrar verticalmente el texto */
 }
+
+.separer{
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  

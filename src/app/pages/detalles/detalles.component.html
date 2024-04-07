@@ -1,18 +1,18 @@
 <section class="cover-section section1" id="coverSection" [style.background-image]="backdrop ? 'url(' + backdrop + ')' : ''">
   <div class="container col-12 col-lg-6 row textStyle">
-    <h1>{{ nombreSerie.toUpperCase() }}</h1>
+    <h1 class="text-center">{{ nombreSerie.toUpperCase() }}</h1>
     <p *ngIf="detallesSerie && detallesSerie.length > 0">{{ detallesSerie[0].descripcion }}</p>
 
     <!-- Información adicional -->
-    <div class="mt-2 additional-info d-flex align-items-center">
-      <span class="mr-1 text-white">⭐ {{ detallesSerie[0].porcentajeCalificacion }}%</span>
+    <div class="mt-2 additional-info d-flex align-items-center justify-content-center">
+      <span class="mr-2 text-white">⭐ {{ detallesSerie[0].porcentajeCalificacion }}%</span>
       <span class="separer text-white">|</span>
-      <span class="ml-1 text-white">{{ detallesSerie[0].anio }}</span>
+      <span class="ml-2 mr-2 text-white">{{ detallesSerie[0].anio }}</span>
       <span class="separer text-white">|</span>
-      <div class="genres">
+      <div class="genres ml-2">
         <ng-container *ngFor="let genero of detallesSerie[0].genero.slice(0, 2); let last = last">
-          <span class="ml-1 text-white additional-info">{{ genero }}</span>
-          <span class="ml-1 text-white additional-info end" *ngIf="!last">,</span>
+          <span class="text-white additional-info">{{ genero }}</span>
+          <span class="text-white additional-info end" *ngIf="!last">,</span>
         </ng-container>
       </div>
     </div>
