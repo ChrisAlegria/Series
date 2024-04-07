@@ -40,7 +40,7 @@
             <p>
               <div>
                 <label class="label">Género de la Serie</label>
-                <select class="form-control custom-select" (change)="updateSelectedGenre($event)">
+                <select class="form-control custom-select space" (change)="updateSelectedGenre($event)">
                   <option value="null" disabled [selected]="true">{{ mensaje }}</option>
                   <option *ngFor="let genre of generos" [value]="genre" [style.color]="isGenreSelected(genre) ? 'red' : 'black'">{{ genre }}</option>
                 </select>

@@ -299,3 +299,54 @@ label{
   width: 400px; /* Define el ancho deseado */
   /* Agrega cualquier otro estilo personalizado que desees */
 }
+
+/* Estilo para el botón de agregar género */
+.generos {
+  font-size: 50%;
+  margin-top: 0;
+  border-radius: 0;
+  border-top-left-radius: 1em; /* Borde redondeado solo en la esquina superior izquierda */
+  border-bottom-left-radius: 1em; /* Borde redondeado solo en la esquina inferior izquierda */
+  border-color: #04a37b;
+  width: 200px;
+  height: 30px;
+  box-shadow: 0 0 40px 40px #04a37b inset, 0 0 0 0 #04a37b;
+  vertical-align: middle; /* Alinea verticalmente el botón con el select */
+  border-right: 1px solid white; /* Contorno blanco en el lado derecho */
+}
+
+/* Estilo al pasar el mouse sobre el botón */
+.generos:hover {
+  box-shadow: 0 0 10px 0 #04a37b inset, 0 0 10px 4px #04a37b;
+}
+
+/* Estilos para el select de eliminar género */
+.select-generos {
+  width: 200px;
+  height: 30px;
+  font-size: 50%;
+  text-align: center;
+  font-weight: 700;
+  color: white;
+  border-radius: 0;
+  border-top-right-radius: 1em; /* Borde redondeado solo en la esquina superior derecha */
+  border-bottom-right-radius: 1em; /* Borde redondeado solo en la esquina inferior derecha */
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.5em 2em;
+  text-transform: uppercase;
+  transition: all 150ms ease-in-out;
+  margin-top: 0; /* Ajusta el margen superior para alinear con el botón */
+  border: 2px solid #04a37b;
+  box-shadow: 0 0 20px 20px #04a37b inset, 0 0 0 0 #04a37b;
+  vertical-align: middle; /* Alinea verticalmente el select con el botón */
+}
+
+.select-generos:hover {
+  box-shadow: 0 0 5px 0 #04a37b inset, 0 0 5px 2px #04a37b;
+}
+
+.space{
+  margin-bottom: 4px;
+}
