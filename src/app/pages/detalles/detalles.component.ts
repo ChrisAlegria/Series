@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Registro } from '../../models/registro';
 import { RegistroService } from '../../services/registro.service';
@@ -9,10 +9,10 @@ import { RegistroService } from '../../services/registro.service';
   styleUrls: ['./detalles.component.css']
 })
 export class DetallesComponent implements OnInit {
-  nombreSerie: string = ''; // Valor predeterminado
-  detallesSerie: Registro[] = []; // Declarar detallesSerie y asignarle un array vacío
-  backdrop: string = ''; // Inicializar la propiedad al declararla
-  logo: string = ''; // Agregar la propiedad para el logo
+  nombreSerie: string = '';
+  detallesSerie: Registro[] = [];
+  backdrop: string = '';
+  minHeight: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,24 +22,40 @@ export class DetallesComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.nombreSerie = params['nombre'];
-      // Llama al servicio para obtener detalles de la serie
       this.registroService.getRegistroPorNombre(this.nombreSerie).subscribe(detalles => {
         this.detallesSerie = detalles;
         if (detalles && detalles.length > 0) {
-          // Obtiene el nombre de la serie
           const nombreSerie = detalles[0].nombre;
-          // Obtiene el año de la serie
           const anio = detalles[0].anio;
-          // Llama al servicio para obtener la imagen y los backdrops de la serie
           this.registroService.getBackdrops(nombreSerie, anio).subscribe((response: any) => {
             if (response && response.results && response.results.length > 0) {
-              // Obtiene la URL de la imagen de la serie
               this.backdrop = `https://image.tmdb.org/t/p/original${response.results[0].backdrop_path}`;
-              // Aquí puedes manejar los backdrops si es necesario
             }
           });
         }
       });
     });
+
+    // Calcular la altura mínima basada en la altura actual de la ventana
+    this.minHeight = window.innerHeight;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    // Actualizar la altura mínima cuando cambia el tamaño de la ventana
+    this.minHeight = window.innerHeight;
+    this.ajustarAlturaSegunContenido();
+  }
+
+  private ajustarAlturaSegunContenido(): void {
+    const coverSection = document.querySelector('.cover-section') as HTMLElement;
+    if (coverSection) {
+      const contentHeight = coverSection.scrollHeight;
+      if (contentHeight > this.minHeight) {
+        coverSection.style.height = `${contentHeight}px`;
+      } else {
+        coverSection.style.height = `${this.minHeight}px`;
+      }
+    }
   }
 }

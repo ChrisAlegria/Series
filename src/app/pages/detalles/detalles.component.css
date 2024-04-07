@@ -43,9 +43,9 @@ label{
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 100vh; /* Ajusta la altura para que ocupe el 100% del tamaño de la pantalla */
+    min-height: 100vh; /* Establecer un mínimo de 100% del viewport height */
     position: relative;
-}
+  }
 
 /* Los estilos existentes para .cover-section::before y .cover-section .container permanecen igual */
 
