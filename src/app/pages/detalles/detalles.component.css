@@ -52,7 +52,7 @@ label{
     position: absolute; /* Posiciona el elemento de manera absoluta */
     top: 0;
     left: 0;
-    width: 70%; /* Cubre la mitad izquierda */
+    width: 62%; /* Cubre la mitad izquierda */
     height: 100%;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.95) 70%, rgba(0, 0, 0, 0)); /* Degradado desde negro hasta transparente */
     z-index: 1; /* Capa encima de la imagen de fondo */
