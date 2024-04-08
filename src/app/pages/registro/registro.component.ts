@@ -250,25 +250,6 @@ export class RegistroComponent implements OnInit {
     // Actualiza el mensaje con todas las opciones seleccionadas
     this.updateMessage();
   
-    // Iterar sobre todas las opciones y cambiar su color según estén seleccionadas o no
-    Array.from(selectElement.options).forEach(option => {
-      const optionText = option.text;
-      if (this.selectedOptions.includes(optionText)) {
-        option.style.color = 'red'; // Está seleccionada, por lo que cambia el color a rojo
-      } else {
-        option.style.color = 'black'; // No está seleccionada, por lo que cambia el color a negro
-      }
-    });
-     // Iterar sobre todas las opciones y cambiar su color según estén seleccionadas o no
-     Array.from(selectElement.options).forEach(option => {
-      const optionText = option.text;
-      if (this.selectedOptions.includes(optionText)) {
-        option.style.color = 'red'; // Está seleccionada, por lo que cambia el color a rojo
-      } else {
-        option.style.color = 'black'; // No está seleccionada, por lo que cambia el color a negro
-      }
-    });
-  
     // Luego de actualizar las opciones seleccionadas, verifica si el botón debe habilitarse
     this.checkButtonStatus();
   }
