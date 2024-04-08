@@ -189,9 +189,11 @@ export class RegistroComponent implements OnInit {
     if (this.selectedSerieId !== "message") {
       this.showUpdateButton = true;
       const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
+  
       if (serieSeleccionada) {
-        // Obtener el género o los géneros de la serie seleccionada
+        // Obtener los géneros de la serie seleccionada
         const generosSeleccionados = serieSeleccionada.genero;
+  
         if (Array.isArray(generosSeleccionados)) {
           // Si hay más de un género, actualiza el mensaje con los géneros seleccionados
           this.mensaje = generosSeleccionados.join(', ');
@@ -199,10 +201,12 @@ export class RegistroComponent implements OnInit {
           // Si hay solo un género, actualiza el mensaje con ese género
           this.mensaje = generosSeleccionados;
         }
-        this.registro = serieSeleccionada;
+  
+        // Clonar el objeto serieSeleccionada para evitar cambios inesperados
+        this.registro = { ...serieSeleccionada };
   
         // Actualizar automáticamente los géneros seleccionados
-        this.selectedOptions = Array.isArray(generosSeleccionados) ? generosSeleccionados : [generosSeleccionados];
+        this.selectedOptions = Array.isArray(generosSeleccionados) ? [...generosSeleccionados] : [generosSeleccionados];
   
         // Actualizar el mensaje con todas las opciones seleccionadas
         this.updateMessage();
@@ -223,14 +227,17 @@ export class RegistroComponent implements OnInit {
         this.calificacionCambiada = false;
         this.generoCambiado = false;
       }
+  
       this.mostrarBotonRojo = false;
     } else {
+      // Si se selecciona el mensaje "Modificar una serie"
       this.showUpdateButton = false;
-      this.registro = new Registro();
+      this.registro = new Registro(); // Reiniciar el objeto registro
       this.mostrarBotonRojo = true;
       this.mostrarBotonVerde = false; // Desactivar el botón azul al seleccionar un mensaje de "Modificar una serie"
     }
   }
+  
   
 
   updateSelectedGenre(event: any): void {
