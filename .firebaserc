@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "series-d90f6": {
+      "hosting": {
+        "series": [
+          "series-d90f6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "series-d90f6"
+  }
+}

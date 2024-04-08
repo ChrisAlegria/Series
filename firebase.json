@@ -1,0 +1,17 @@
+{
+  "hosting": [
+    {
+      "public": "dist/series/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "target": "series",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
