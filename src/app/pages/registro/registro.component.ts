@@ -88,8 +88,11 @@ export class RegistroComponent implements OnInit {
   updateRegistro() {
     const confirmacion = confirm('¿Estás seguro de que deseas actualizar esta serie?');
     if (confirmacion) {
-      // Agregar los géneros seleccionados al registro antes de actualizarlo
-      this.registro.genero = this.selectedOptions;
+      // Verificar si algún campo obligatorio está vacío
+      if (!this.registro.nombre || !this.registro.descripcion || !this.registro.anio) {
+        alert('Por favor completa todos los campos obligatorios (nombre, descripción y año).');
+        return; // Salir de la función si hay campos vacíos
+      }
   
       // Verificar si hay estrellas seleccionadas
       if (this.selectedStars === 0) {
@@ -97,21 +100,18 @@ export class RegistroComponent implements OnInit {
         return; // Salir de la función si no hay estrellas seleccionadas
       }
   
+      // Agregar los géneros seleccionados al registro antes de actualizarlo
+      this.registro.genero = this.selectedOptions;
+  
       // Llamar al servicio para actualizar el registro
       this.agregarModificarEliminarService.updateRegistro(this.registro);
   
-      // Reiniciar el registro
+      // Reiniciar el registro y otras variables de control
       this.registro = new Registro();
-  
-      // Reiniciar el ID seleccionado
       this.selectedSerieId = null;
-  
-      // Reiniciar las variables de control de botones
       this.showUpdateButton = false;
       this.mostrarBotonVerde = false;
       this.mostrarBotonRojo = true;
-  
-      // Reiniciar el mensaje y las opciones seleccionadas
       this.resetMessageAndSelect();
       this.resetStars();
   
@@ -124,6 +124,7 @@ export class RegistroComponent implements OnInit {
       }
     }
   }
+  
   
 
   cancelarEdicion() {
