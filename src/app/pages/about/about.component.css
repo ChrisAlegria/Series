@@ -5,7 +5,7 @@ h1{
 }
 
 p{
-    font-size: 90%;
+    font-size: 75%;
     font-style: inherit;
     font-weight: inherit;
     vertical-align: baseline;
@@ -22,6 +22,76 @@ section {
 img{
     margin-left: 10px;
     width: 500px;
+}
+
+div.noticia {
+    width: 80%;
+    margin: 20px auto;
+    background-color: rgb(25, 25, 29);
+    color: #fff;
+    padding: 15px;
+
+  }
+  
+  div.noticia img.izquierda {
+    float: left;
+    margin-right: 20px;
+  }
+  
+  div.noticia img.derecha {
+    float: right;
+    margin-left: 20px;
+  }
+  
+  div.reset {
+    clear: both;
+  }
+
+  aside{
+    text-align: justify;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+
+  img.izquierda {
+    width: 165px; /* Ancho fijo de la imagen */
+    height: 165px; /* Altura fija de la imagen */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor manteniendo la relación de aspecto */
+    display: block; /* Asegura que la imagen respete el espacio vertical */
+    margin-right: 20px; /* Espacio a la derecha de la imagen */
+}
+
+img.derecha {
+    width: 165px; /* Ancho fijo de la imagen */
+    height: 165px; /* Altura fija de la imagen */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor manteniendo la relación de aspecto */
+    display: block; /* Asegura que la imagen respete el espacio vertical */
+    margin-right: 20px; /* Espacio a la derecha de la imagen */
+}
+
+
+
+div.noticia {
+    width: 80%;
+    margin: 20px auto;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro con transparencia */
+    color: #fff;
+    padding: 15px;
+}
+
+div.noticia img.izquierda,
+div.noticia img.derecha {
+    /* Estilos para las imágenes dentro de los divs de noticias */
+    width: 165px;
+    height: 165px;
+    object-fit: cover;
+    display: block;
+    margin-right: 20px;
+}
+
+.init{
+    font-size: 80%;
 }
 
 .about-columns {
@@ -50,13 +120,15 @@ img{
     border-left: 40px;
 }
 
-.section1{
-    background-image: url('https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2023/06/sirve-modo-cine-televisor-deberias-usarlo-3071980.jpg?tf=3840x');
+.extra{
+    margin-top: 40px;
 }
 
+.section2{
+    background-image: url('https://images.squarespace-cdn.com/content/v1/5ef0f1c0c96ec4739e74ac4a/2ef2698d-d6c0-43d3-9d93-241c6aa98346/Streaming+1.jpg');
+}
 
 .cover-section {
-    background-image: url('https://hips.hearstapps.com/hmg-prod/images/netflix-653238be1d8c8.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -76,7 +148,7 @@ img{
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad */
+    background-color: rgba(0, 0, 0, 0.7); /* Color negro con opacidad */
   }
   
   .cover-section .container{
@@ -88,3 +160,185 @@ img{
     padding-top: 50px; /* Espacio superior para centrar verticalmente el texto */
   }
 
+.section1 {
+    background-image: url('https://assets-global.website-files.com/5fac161927bf86485ba43fd0/644e6a93adfd2172b179b1fb_Blog%20Cover_2023_04_%2015%20Top%20Live%20Streaming%20Platforms%20for%20All%20Uses%20in%202023%20(Free%20_%20Paid).webp');
+    min-height: 450px; /* Ajusta la altura según sea necesario */
+    position: relative;
+}
+
+.section1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad */
+}
+
+.section1 .container {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    padding-top: 50px; /* Espacio superior para centrar verticalmente el texto */
+}
+
+.section1 h1 {
+    color: white;
+    margin-bottom: 30px;
+    margin-top: 80px;
+}
+
+.section1 p {
+    font-size: 90%;
+    font-style: inherit;
+    font-weight: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(201, 201, 201);
+}
+
+.cover-section {
+    background-size: cover; /* Ajusta la imagen para que cubra toda la sección */
+    width: 100%;
+    position: relative;
+}
+
+.section3 {
+    position: relative; /* Asegura que los elementos dentro de section3 respeten la posición relativa */
+    padding: 2rem 5%; /* Ajusta el relleno interno */
+    overflow: hidden; /* Evita que el contenido se desborde */
+}
+
+.section3::before {
+    content: ''; /* Añade el contenido necesario para los pseudo-elementos */
+    position: absolute; /* Posiciona el elemento de manera absoluta */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Color negro con opacidad */
+    z-index: 0; /* Coloca la capa detrás del contenido */
+}
+
+
+.section3 {
+    position: relative;
+    padding: 2rem 5%;
+    overflow: hidden;
+    background-image: url('https://i.blogs.es/4431f2/accesorio-01/1366_2000.jpeg');
+    background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+    background-position: center; /* Centra la imagen en el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.section3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+}
+
+.noticia {
+    width: 80%;
+    margin: 20px auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro con transparencia */
+    color: #fff;
+    padding: 15px;
+    position: relative;
+    z-index: 1;
+    border-radius: 8px; /* Agrega bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega sombra */
+    overflow: hidden; /* Para recortar contenido que desborde */
+}
+
+.noticia img {
+    width: 165px;
+    height: 165px;
+    object-fit: cover;
+    border-radius: 50%; /* Haz que las imágenes sean redondas */
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.noticia aside {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.noticia h2 {
+    margin-top: 20px;
+}
+
+.reset {
+    clear: both;
+}
+
+
+.centers {
+    text-align: center;
+}
+
+.section3 h1 {
+    position: relative;
+    z-index: 1; /* Coloca el <h1> encima de otros elementos */
+    margin-bottom: 80px;
+}
+
+/* Estilo para el título de la sección */
+.section-title {
+    color: white;
+    margin-bottom: 70px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+/* Estilos para las secciones en columnas */
+.container.textStyle {
+    text-align: center;
+}
+
+.about-columns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.about-columns > div {
+    width: 48%; /* Ancho de cada columna */
+    margin-bottom: 20px; /* Espacio inferior entre las secciones */
+    padding: 20px; /* Espaciado interno */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con transparencia */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+.about-columns > div h1 {
+    margin-bottom: 20px;
+}
+
+.about-columns > div p {
+    margin-bottom: 0; /* Eliminar el margen inferior del párrafo */
+}
+
+/* Estilos para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .about-columns > div {
+        width: 100%; /* Ancho completo en pantallas pequeñas */
+    }
+}
+
+.cover-section.section2 h1.section-title {
+    margin-top: -10px; /* Ajusta el margen superior según sea necesario */
+}
+
+.cards{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
