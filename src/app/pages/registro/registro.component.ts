@@ -406,13 +406,6 @@ export class RegistroComponent implements OnInit {
             // Actualizar el mensaje con las opciones seleccionadas restantes
             this.updateMessage();
   
-            // Reiniciar el color de las opciones del desplegable a negro
-            const selectElement = document.querySelector('.select-dropdown') as HTMLSelectElement;
-            if (selectElement) {
-              Array.from(selectElement.options).forEach(option => {
-                option.style.color = this.selectedOptions.includes(option.value) ? 'red' : 'black';
-              });
-            }
           }
   
           // Llamar al servicio para eliminar el género de la base de datos
