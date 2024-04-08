@@ -392,20 +392,43 @@ export class RegistroComponent implements OnInit {
 
   eliminarGenero(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
-    const generoSeleccionado = selectElement.value;
-    
-    if (generoSeleccionado) {
-      const confirmacion = confirm(`¿Estás seguro de que deseas eliminar el género "${generoSeleccionado}"?`);
+    const generoEliminado = selectElement.value;
+  
+    if (generoEliminado) {
+      const confirmacion = confirm(`¿Estás seguro de que deseas eliminar el género "${generoEliminado}"?`);
       if (confirmacion) {
-        // Eliminar el género del arreglo local
-        const index = this.generos.indexOf(generoSeleccionado);
+        // Eliminar el género del arreglo local (this.generos)
+        const index = this.generos.indexOf(generoEliminado);
         if (index !== -1) {
           this.generos.splice(index, 1);
+  
+          // Verificar si el género eliminado está seleccionado en el select "Selecciona un genero"
+          if (this.selectedOptions.includes(generoEliminado)) {
+            // Quitar el género eliminado de las opciones seleccionadas
+            this.selectedOptions = this.selectedOptions.filter(option => option !== generoEliminado);
+  
+            // Actualizar el mensaje con las opciones seleccionadas restantes
+            this.updateMessage();
+            this.resetMessageAndSelect();
+          }
+  
+          // Llamar al servicio para eliminar el género de la base de datos
+          this.agregarModificarEliminarService.eliminarGenero(generoEliminado);
+  
+          // Iterar sobre los registros y eliminar el género de aquellos que lo contienen
+          this.registros.forEach(registro => {
+            const generoIndex = registro.genero.indexOf(generoEliminado);
+            if (generoIndex !== -1) {
+              // Eliminar el género del registro
+              registro.genero.splice(generoIndex, 1);
+  
+              // Llamar al servicio para actualizar el registro en la base de datos
+              this.agregarModificarEliminarService.updateRegistro(registro);
+            }
+          });
         }
-        
-        // Llamar al servicio para eliminar el género de la base de datos
-        this.agregarModificarEliminarService.eliminarGenero(generoSeleccionado);
       }
     }
   }
+  
 }
