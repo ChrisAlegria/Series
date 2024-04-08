@@ -315,10 +315,16 @@ export class RegistroComponent implements OnInit {
     this.calificacionCambiada = true;
     this.calificacionCambiada = true;
   }
+// En tu archivo registro.component.ts
 
-  isGenreSelected(genre: string): boolean {
-    return this.selectedOptions.includes(genre);
+isGenreSelected(genre: string): boolean {
+  const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
+  if (serieSeleccionada && serieSeleccionada.genero) {
+    return serieSeleccionada.genero.includes(genre);
   }
+  return false;
+}
+
   
 
   highlightStars(star: number): void {
