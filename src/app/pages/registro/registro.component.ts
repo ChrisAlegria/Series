@@ -185,7 +185,6 @@ export class RegistroComponent implements OnInit {
     }
   }
 
- 
   selectSerie() {
     if (this.selectedSerieId !== "message") {
       this.showUpdateButton = true;
@@ -406,7 +405,7 @@ export class RegistroComponent implements OnInit {
             // Actualizar el mensaje con las opciones seleccionadas restantes
             this.updateMessage();
             this.resetMessageAndSelect();
-
+  
           }
   
           // Llamar al servicio para eliminar el género de la base de datos
