@@ -199,10 +199,16 @@ export class RegistroComponent implements OnInit {
           // Si hay solo un género, actualiza el mensaje con ese género
           this.mensaje = generosSeleccionados;
         }
-        this.registro = { ...serieSeleccionada }; // Clonar el objeto para evitar cambios inesperados
+        this.registro = serieSeleccionada;
+  
+        // Actualizar automáticamente los géneros seleccionados
+        this.selectedOptions = Array.isArray(generosSeleccionados) ? generosSeleccionados : [generosSeleccionados];
+  
+        // Actualizar el mensaje con todas las opciones seleccionadas
+        this.updateMessage();
   
         // Reiniciar las estrellas seleccionadas
-        this.selectedStars = 0;
+        this.resetStars();
   
         // Verificar el valor de la calificación para colorear las estrellas
         if (serieSeleccionada.porcentajeCalificacion) {
@@ -226,7 +232,6 @@ export class RegistroComponent implements OnInit {
     }
   }
   
-  
 
   updateSelectedGenre(event: any): void {
     const selectElement = event.target as HTMLSelectElement;
@@ -249,6 +254,16 @@ export class RegistroComponent implements OnInit {
   
     // Actualiza el mensaje con todas las opciones seleccionadas
     this.updateMessage();
+  
+    // Iterar sobre todas las opciones y cambiar su color según estén seleccionadas o no
+    Array.from(selectElement.options).forEach(option => {
+      const optionText = option.text;
+      if (this.selectedOptions.includes(optionText)) {
+        option.style.color = 'red'; // Está seleccionada, por lo que cambia el color a rojo
+      } else {
+        option.style.color = 'black'; // No está seleccionada, por lo que cambia el color a negro
+      }
+    });
   
     // Luego de actualizar las opciones seleccionadas, verifica si el botón debe habilitarse
     this.checkButtonStatus();
@@ -315,16 +330,10 @@ export class RegistroComponent implements OnInit {
     this.calificacionCambiada = true;
     this.calificacionCambiada = true;
   }
-// En tu archivo registro.component.ts
 
-isGenreSelected(genre: string): boolean {
-  const serieSeleccionada = this.registros.find(serie => serie.id === this.selectedSerieId);
-  if (serieSeleccionada && serieSeleccionada.genero) {
-    return serieSeleccionada.genero.includes(genre);
+  isGenreSelected(genre: string): boolean {
+    return this.selectedOptions.includes(genre);
   }
-  return false;
-}
-
   
 
   highlightStars(star: number): void {
@@ -383,31 +392,20 @@ isGenreSelected(genre: string): boolean {
 
   eliminarGenero(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
-    const generoEliminado = selectElement.value;
-  
-    if (generoEliminado) {
-      const confirmacion = confirm(`¿Estás seguro de que deseas eliminar el género "${generoEliminado}"?`);
+    const generoSeleccionado = selectElement.value;
+    
+    if (generoSeleccionado) {
+      const confirmacion = confirm(`¿Estás seguro de que deseas eliminar el género "${generoSeleccionado}"?`);
       if (confirmacion) {
-        // Eliminar el género del arreglo local (this.generos)
-        const index = this.generos.indexOf(generoEliminado);
+        // Eliminar el género del arreglo local
+        const index = this.generos.indexOf(generoSeleccionado);
         if (index !== -1) {
           this.generos.splice(index, 1);
-  
-          // Verificar si el género eliminado está seleccionado en el select "Selecciona un genero"
-          if (this.selectedOptions.includes(generoEliminado)) {
-            // Quitar el género eliminado de las opciones seleccionadas
-            this.selectedOptions = this.selectedOptions.filter(option => option !== generoEliminado);
-  
-            // Actualizar el mensaje con las opciones seleccionadas restantes
-            this.updateMessage();
-            this.resetMessageAndSelect();
-  
-          }
-  
-          // Llamar al servicio para eliminar el género de la base de datos
-          this.agregarModificarEliminarService.eliminarGenero(generoEliminado);
         }
+        
+        // Llamar al servicio para eliminar el género de la base de datos
+        this.agregarModificarEliminarService.eliminarGenero(generoSeleccionado);
       }
     }
   }
-}  
+}
