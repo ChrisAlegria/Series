@@ -13,7 +13,7 @@
               <h1>Ingresa Aquí la Información de tu Serie</h1>
               <p class="fontSize">En este apartado podrás agregar tus series favoritas y registrarlas en una base de datos, donde se almacenará el nombre de tu serie, su foto de portada, sus temporadas que le agregues y mucho más.</p>
               <button *ngIf="!showUpdateButton" type="button" class="btn red"  (click)="insertarRegistro();   resetMessageAndSelect()" [disabled]="!registro.nombre || !registro.descripcion || !registro.anio || !generoSeleccionado || !selectedStars" [ngClass]="{'active': selectedStars}">Insertar el registro de la serie a la BD</button>
-              <button *ngIf="showUpdateButton && !mostrarBotonVerde" type="button" class="btn blue" (click)="updateRegistro();" [disabled]="!(nombreCambiado || descripcionCambiada || generoSeleccionado || anioCambiado || calificacionCambiada || !selectedStars)">Actualizar Información</button>
+              <button *ngIf="showUpdateButton && !mostrarBotonVerde" type="button" class="btn blue" (click)="updateRegistro();" [disabled]="!(nombreCambiado || descripcionCambiada || !generoSeleccionado || anioCambiado || calificacionCambiada || !selectedStars)">Actualizar Información</button>
               <button *ngIf="selectedSerieId && showUpdateButton" type="button" class="btn purple" (click)="deleteRegistro(selectedSerieId);">Eliminar Serie</button>
               <button *ngIf="selectedSerieId && showUpdateButton && !mostrarBotonVerde" type="button" class="btn green" (click)="cancelarEdicion();">Cancelar la edición</button>
               
