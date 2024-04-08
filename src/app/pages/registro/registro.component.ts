@@ -392,20 +392,37 @@ export class RegistroComponent implements OnInit {
 
   eliminarGenero(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
-    const generoSeleccionado = selectElement.value;
-    
-    if (generoSeleccionado) {
-      const confirmacion = confirm(`¿Estás seguro de que deseas eliminar el género "${generoSeleccionado}"?`);
+    const generoEliminado = selectElement.value;
+  
+    if (generoEliminado) {
+      const confirmacion = confirm(`¿Estás seguro de que deseas eliminar el género "${generoEliminado}"?`);
       if (confirmacion) {
-        // Eliminar el género del arreglo local
-        const index = this.generos.indexOf(generoSeleccionado);
+        // Eliminar el género del arreglo local (this.generos)
+        const index = this.generos.indexOf(generoEliminado);
         if (index !== -1) {
           this.generos.splice(index, 1);
+  
+          // Verificar si el género eliminado está seleccionado en el select "Selecciona un genero"
+          if (this.selectedOptions.includes(generoEliminado)) {
+            // Quitar el género eliminado de las opciones seleccionadas
+            this.selectedOptions = this.selectedOptions.filter(option => option !== generoEliminado);
+  
+            // Actualizar el mensaje con las opciones seleccionadas restantes
+            this.updateMessage();
+  
+            // Reiniciar el color de las opciones del desplegable a negro
+            const selectElement = document.querySelector('.select-dropdown') as HTMLSelectElement;
+            if (selectElement) {
+              Array.from(selectElement.options).forEach(option => {
+                option.style.color = this.selectedOptions.includes(option.value) ? 'red' : 'black';
+              });
+            }
+          }
+  
+          // Llamar al servicio para eliminar el género de la base de datos
+          this.agregarModificarEliminarService.eliminarGenero(generoEliminado);
         }
-        
-        // Llamar al servicio para eliminar el género de la base de datos
-        this.agregarModificarEliminarService.eliminarGenero(generoSeleccionado);
       }
     }
   }
-}
+}  
