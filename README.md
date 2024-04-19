@@ -32,4 +32,4 @@ This project draws inspiration from various sources; however, I do not claim own
 
 ## Development
 
-This project was developed by ©ChrisAlegria. All rights reserved.
+This project was developed by `©ChrisAlegria`. All rights reserved.
